@@ -1,0 +1,48 @@
+.headerLogo {
+    width: 30%;
+    height: auto;
+    margin: 20px;
+    object-fit: contain;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 0 10px;
+    border-radius: 15px;
+}
+
+.headerBackground {
+    background-image: linear-gradient(180deg,rgb(0 0 0 / 83%) 29%,rgba(0,0,0,.5970763305322129) 80%),url(../../assets/headerbackground.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.headerBoxBull {
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerList {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.headerList>li {
+    margin: 0 20px;
+    font-size: 20px;
+    color: white;
+    text-decoration: underline;
+}
+
+.hero {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 80px 0;
+    color: white;
+}
+
+.hero > h2{
+    font-size: 40px;
+    font-weight: bold;
+}
