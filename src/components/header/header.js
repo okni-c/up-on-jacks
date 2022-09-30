@@ -1,5 +1,4 @@
 import logo from '../../assets/LogoConcept.png';
-import headerlogo from '../../assets/headerbackground.jpg'
 import './header.css';
 
 function Header() {
