@@ -1,0 +1,10 @@
+.submodal {
+    width: 250px;
+    height: 144px;
+    object-fit: cover;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+}
