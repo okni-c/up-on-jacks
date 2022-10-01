@@ -5,6 +5,14 @@
     border-radius: 10px;
     margin-bottom: 25px;
     filter: drop-shadow(0 4px 2px rgb(0, 0, 0));
+    transition: all 0.2s ease-in-out;
+    align-items: center;
+}
+
+.buildcardcontainer:hover {
+    cursor: pointer;
+    background-color: #f3f1f1;
+    box-sizing: border-box;
 }
 
 .buildcardimage{
@@ -49,4 +57,10 @@
 .buildcarddesc > p{
     text-align: left;
     padding: 0 0 0 15px;
+}
+
+@media (max-width: 992px) {
+    .buildcardcontainer {
+        flex-direction: column;
+    }
 }
