@@ -68,12 +68,45 @@
     background-color: #212121;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 50px;
+    padding: 10px 50px;
+    overflow: auto;
+    border-radius: 15px;
 }
 
 .Modal h3 {
     color: white;
 }
+
+.Modal button{
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.Modal button img{
+    max-width: 25px;
+    width: 100%;
+}
+
+.Modal button img:hover{
+    cursor: pointer;
+}
+
+.Modal ul{
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    list-style: none;
+    padding: 10px;
+}
+
+.Modal ul li{
+    background-color: rgb(170, 170, 170);
+    margin: 5px 0;
+    border-radius: 6px;
+    padding-left: 5px;
+    font-size: 18px;
+}
+
 
 .Overlay {
     position: fixed;

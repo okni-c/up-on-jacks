@@ -1,6 +1,7 @@
 import './buildcard.css';
 import logo from '../../assets/fiat.jpg';
 import BuildCardModal from '../buildcardmodal/buildcardmodal';
+import close from '../../assets/closebutton.png';
 
 import React from 'react';
 //import ReactDOM from 'react-dom';
@@ -49,9 +50,17 @@ function BuildCard() {
                 overlayClassName="Overlay"
                 ariaHideApp={false}
             >
-                <button onClick={closeModal}>close</button>
+                <button onClick={closeModal}><img src={close} /></button>
                 <h3>Ethan's 1996 Mazda Miata</h3>
                 <BuildCardModal />
+                <h3>Mod List</h3>
+                <ul>
+                    <li>Flyin' Miata Turbo Kit</li>
+                    <li>Flyin' Miata Happy Meal Clutch/Flywheel</li>
+                    <li>Flyin' Miata Suspension</li>
+                    <li>Flyin' Miata Swaybar</li>
+                    <li>Flyin' Miata Miata</li>
+                </ul>
             </Modal>
         </>
     );
