@@ -1,4 +1,4 @@
-import logo from '../../assets/LogoConcept.png';
+import logo from '../../assets/ModernLogoConcept.png';
 import { Link } from 'react-router-dom';
 import './header.css';
 
@@ -12,9 +12,7 @@ function Header() {
           <li><a href="/">Log In</a></li>
         </ul>
       </div>
-      <div className="hero container"><h2>Car website</h2><p>Once open, it could be closed for 30 to 45 minutes for car entries, but would not affect traffic into the mall or on the day.
-
-        Paul Joyce, the mall's executive director of marketing and business, told</p></div>
+      <div className="hero container"><h2>Within cells, interLinked</h2></div>
     </div>
   );
 }

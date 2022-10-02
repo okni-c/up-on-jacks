@@ -50,8 +50,10 @@ function BuildCard() {
                 overlayClassName="Overlay"
                 ariaHideApp={false}
             >
-                <button onClick={closeModal}><img src={close} alt="Close Button"/></button>
-                <h3><Link to='/userprofile'>Ethan's 1996 Mazda Miata</Link></h3>
+                <button onClick={closeModal}><img src={close} alt="Close Button" /></button>
+                <h3><Link to='/userprofile' onClick={() => {
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                }}>Ethan's 1996 Mazda Miata</Link></h3>
                 <BuildCardModal />
                 <h3>Mod List</h3>
                 <ul>

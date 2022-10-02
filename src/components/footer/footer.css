@@ -1,6 +1,6 @@
-.footercontainer{
+.footerbackground{
     width: 100%;
-    background-color: rgb(43, 43, 43);
+    background-color: #CD2E35;
 }
 
 .footerLogo {
@@ -10,11 +10,25 @@
     border-radius: 15px;
 }
 
-.footerlist{
+.footersocial {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.footerlist > li{
-    font-size: 20px;
+.footersocial > li > img{
+    max-width: 50px;
+    width: 100%;
+    margin: 0 40px;
+}
+
+.footerlist {
+    list-style: none;
+    color: white;
+}
+
+.footerlist>li {
+    font-size: 30px;
     margin: 10px;
+
 }

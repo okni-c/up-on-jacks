@@ -4,13 +4,13 @@
 }
 
 .backgroundcolor {
-  background: rgb(0, 41, 63);
-  background: linear-gradient(0deg, rgba(0, 41, 63, 1) 0%, rgba(231, 231, 231, 1) 100%);
+  background-color:#3E3E3E;
 }
 
 .bodyheader {
   text-align: center;
   font-size: 35px;
+  color: white;
 }
 
 .alignleft {
@@ -26,20 +26,20 @@
   max-width: 800px;
   width: 100%;
   font-size: 18px;
-  background-color: #cccbcb;
+  background-color: #CD2E35;
   border: none;
   filter: drop-shadow(0 4px 12px rgb(148, 147, 147));
   transition: all 0.25s ease-in-out;
 }
 
 .searchbar::placeholder {
-  color: black;
+  color: white;
 }
 
 .searchbar:focus-visible {
   outline: none;
   background-color: white;
-  color: black;
+  color: #CD2E35;
   scale: 1.2;
 }
 
