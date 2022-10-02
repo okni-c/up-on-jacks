@@ -4,7 +4,7 @@ import BuildCardModal from '../buildcardmodal/buildcardmodal';
 import close from '../../assets/closebutton.png';
 
 import React from 'react';
-//import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
 //Modal.setAppElement('#yourAppElement');
@@ -23,7 +23,7 @@ function BuildCard() {
     return (
         <>
             <div className="buildcardcontainer" onClick={openModal}>
-                <img src={logo} alt="" className="buildcardimage" />
+                <img src={logo} alt="Build Car" className="buildcardimage" />
                 <div className="buildcardinfo">
                     <h3 className="buildcardheader">Jack Mehoff's 1993 Fiat Multipa</h3>
                     <div className="buildcardbody">
@@ -50,8 +50,8 @@ function BuildCard() {
                 overlayClassName="Overlay"
                 ariaHideApp={false}
             >
-                <button onClick={closeModal}><img src={close} /></button>
-                <h3>Ethan's 1996 Mazda Miata</h3>
+                <button onClick={closeModal}><img src={close} alt="Close Button"/></button>
+                <h3><Link to='/userprofile'>Ethan's 1996 Mazda Miata</Link></h3>
                 <BuildCardModal />
                 <h3>Mod List</h3>
                 <ul>

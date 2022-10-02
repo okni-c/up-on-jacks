@@ -1,0 +1,48 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.backgroundcolor {
+  background: rgb(0, 41, 63);
+  background: linear-gradient(0deg, rgba(0, 41, 63, 1) 0%, rgba(231, 231, 231, 1) 100%);
+}
+
+.bodyheader {
+  text-align: center;
+  font-size: 35px;
+}
+
+.alignleft {
+  text-align: left !important;
+}
+
+.searchbar {
+  text-align: left;
+  margin: 0 auto;
+  display: block;
+  border-radius: 8px;
+  padding: 8px 10px;
+  max-width: 800px;
+  width: 100%;
+  font-size: 18px;
+  background-color: #cccbcb;
+  border: none;
+  filter: drop-shadow(0 4px 12px rgb(148, 147, 147));
+  transition: all 0.25s ease-in-out;
+}
+
+.searchbar::placeholder {
+  color: black;
+}
+
+.searchbar:focus-visible {
+  outline: none;
+  background-color: white;
+  color: black;
+  scale: 1.2;
+}
+
+.sectionbox {
+  padding: 40px 15px 80px 15px;
+}

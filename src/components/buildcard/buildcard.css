@@ -77,6 +77,17 @@
     color: white;
 }
 
+.Modal h3 a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.Modal h3 a:hover {
+    text-decoration: underline;
+    color: #FF7B7B;
+}
+
 .Modal button{
     background: none;
     border: none;

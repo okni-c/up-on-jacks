@@ -1,27 +1,22 @@
-import './App.css';
-import BuildCard from './components/buildcard/buildcard';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Home from './pages/Home/home';
+import UserProfile from './pages/UserProfile/userprofile';
+
+import './App.css';
 
 function App() {
-  return (
-    <section className="backgroundcolor">
-      <div className="container">
-        <div className="sectionbox">
-          <h2 className="bodyheader">Search Builds</h2>
-          <input type="text" className="searchbar" placeholder="Search for your hoopty" />
-        </div>
-        <div className="sectionbox">
-          <h2 className="bodyheader alignleft">Featured Builds</h2>
-          <div>
-            <BuildCard />
-            <BuildCard />
-            <BuildCard />
-            <BuildCard />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path='/' element={<Home />}>
+                </Route>
+                <Route path='/userprofile' element={<UserProfile />}>
+                </Route>
+            </Routes>
+        </Router>
+    )
 }
 
 export default App;

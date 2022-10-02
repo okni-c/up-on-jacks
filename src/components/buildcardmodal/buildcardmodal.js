@@ -1,7 +1,6 @@
 import './buildcardmodal.css';
 import React, { useState } from "react";
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
@@ -9,7 +8,6 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-// Import Swiper styles
 import 'swiper/css';
 
 function BuildCardModal() {

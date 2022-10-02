@@ -1,11 +1,17 @@
-.headerLogo {
+.headerLink {
     width: 30%;
     height: auto;
     margin: 20px;
-    object-fit: contain;
     background-color: rgba(255, 255, 255, 1);
     padding: 0 10px;
     border-radius: 15px;
+}
+
+.headerLogo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    padding: 5px 0 0 0;
 }
 
 .headerBackground {
