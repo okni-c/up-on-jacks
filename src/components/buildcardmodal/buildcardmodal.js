@@ -28,8 +28,11 @@ function BuildCardModal() {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper2"
             >
-                <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt="" className="center"/></SwiperSlide>
-                <SwiperSlide><img src="https://i.ytimg.com/vi/mgTgDsOA-ZM/maxresdefault.jpg" alt="" className="center"/></SwiperSlide>
+                <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt=""/></SwiperSlide>
+                <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt=""/></SwiperSlide>
+                <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt=""/></SwiperSlide>
+                <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt=""/></SwiperSlide>
+                <SwiperSlide><img src="https://i.ytimg.com/vi/mgTgDsOA-ZM/maxresdefault.jpg" alt=""/></SwiperSlide>
                 <SwiperSlide><img src="https://www.cnet.com/a/img/resize/d7d51f7d0aef23d71409b21adf6f84230d595d2f/hub/2019/12/02/3d379857-8a13-4b21-9f4c-312d9983d8fe/ogi1-mazda-miata-30th-anniversary-001.jpg?auto=webp&fit=crop&height=630&width=1200" alt="" className="center"/></SwiperSlide>
             </Swiper>
             <Swiper
@@ -43,9 +46,10 @@ function BuildCardModal() {
                 
             >
                 <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt="" className="submodal"/></SwiperSlide>
-                
+                <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt="" className="submodal"/></SwiperSlide>
+                <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt="" className="submodal"/></SwiperSlide>
+                <SwiperSlide><img src="https://guide-images.cdn.ifixit.com/igi/DCWwPpQXohrvtrVl.large" alt="" className="submodal"/></SwiperSlide>
                 <SwiperSlide><img src="https://i.ytimg.com/vi/mgTgDsOA-ZM/maxresdefault.jpg" alt="" className="submodal"/></SwiperSlide>
-                
                 <SwiperSlide><img src="https://www.cnet.com/a/img/resize/d7d51f7d0aef23d71409b21adf6f84230d595d2f/hub/2019/12/02/3d379857-8a13-4b21-9f4c-312d9983d8fe/ogi1-mazda-miata-30th-anniversary-001.jpg?auto=webp&fit=crop&height=630&width=1200" alt="" className="submodal"/></SwiperSlide>
             </Swiper>
         </>

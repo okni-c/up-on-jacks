@@ -4,15 +4,16 @@ import BuildCard from './components/buildcard/buildcard';
 
 function App() {
   return (
-    <section class="backgroundcolor">
+    <section className="backgroundcolor">
       <div className="container">
         <div className="sectionbox">
           <h2 className="bodyheader">Search Builds</h2>
-          <input type="text" class="searchbar" placeholder="Search for your hoopty" />
+          <input type="text" className="searchbar" placeholder="Search for your hoopty" />
         </div>
         <div className="sectionbox">
           <h2 className="bodyheader alignleft">Featured Builds</h2>
           <div>
+            <BuildCard />
             <BuildCard />
             <BuildCard />
             <BuildCard />
