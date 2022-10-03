@@ -28,8 +28,9 @@
   font-size: 18px;
   background-color: #CD2E35;
   border: none;
-  filter: drop-shadow(0 4px 12px rgb(148, 147, 147));
+  /* filter: drop-shadow(0 4px 12px rgb(148, 147, 147)); */
   transition: all 0.25s ease-in-out;
+  font-weight: 700;
 }
 
 .searchbar::placeholder {
