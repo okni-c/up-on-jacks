@@ -7,12 +7,12 @@
     filter: drop-shadow(0 4px 2px rgb(0, 0, 0));
     transition: all 0.2s ease-in-out;
     align-items: center;
-    color: white;
+    color: #F7F7F7;
 }
 
 .buildcardcontainer:hover {
     cursor: pointer;
-    background-color: white;
+    background-color: #F7F7F7;
     box-sizing: border-box;
     color: #CD2E35;
 }
@@ -71,8 +71,8 @@
     left: 40px;
     right: 40px;
     bottom: 40px;
-    background-color: #212121;
-    max-width: 1200px;
+    background-color: #3E3E3E;
+    max-width: 800px;
     margin: 0 auto;
     padding: 10px 50px;
     overflow: auto;
@@ -80,18 +80,25 @@
 }
 
 .Modal h3 {
-    color: white;
+    color: #F7F7F7;
 }
 
 .Modal h3 a {
-    color: white;
+    color: #F7F7F7;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
 }
 
+.modalDesc{
+    background-color: #CD2E35;
+    color: #F7F7F7;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 .Modal h3 a:hover {
     text-decoration: underline;
-    color: #FF7B7B;
+    color: #CD2E35;
 }
 
 .Modal button{
@@ -110,18 +117,20 @@
 }
 
 .Modal ul{
-    background-color: rgb(255, 255, 255);
+    background-color: #CD2E35;
     border-radius: 15px;
     list-style: none;
     padding: 10px;
 }
 
 .Modal ul li{
-    background-color: rgb(170, 170, 170);
+    background-color: #F7F7F7;
     margin: 5px 0;
     border-radius: 6px;
     padding-left: 5px;
     font-size: 18px;
+    color:#CD2E35;
+    font-weight: 700;
 }
 
 

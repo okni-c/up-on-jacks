@@ -37,14 +37,14 @@
     margin: 0 20px;
 }
 
-.headerList>li:hover {
-    text-decoration: underline;
-}
-
 .headerList>li>a {
     text-decoration: none;
     color: white;
     font-size: 20px;
+}
+
+.headerList li a:hover{
+    color: #CD2E35;
 }
 
 .hero {

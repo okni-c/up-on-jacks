@@ -5,12 +5,14 @@ import './userbody.css';
 function UserBody() {
     return (
         <>
+        <section className="userbodybackground">
             <div className="container">
-                <div className="sectionbox">
+                <div className="sectionbox userbodybackground">
                     <BuildCard />
                     <BuildCard />
                 </div>
             </div>
+            </section>
         </>
     );
 }

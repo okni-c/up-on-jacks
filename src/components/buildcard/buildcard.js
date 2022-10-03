@@ -55,6 +55,12 @@ function BuildCard() {
                     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}>Ethan's 1996 Mazda Miata</Link></h3>
                 <BuildCardModal />
+                <h3>Biography</h3>
+                <p className='modalDesc'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
+
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
+
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
                 <h3>Mod List</h3>
                 <ul>
                     <li>Flyin' Miata Turbo Kit</li>
