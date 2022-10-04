@@ -15,10 +15,11 @@
 }
 
 .headerBackground {
-    background-color: #3E3E3E;
+    background-color: #2E2E2E;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-bottom: 5px solid #CD2E35;
 }
 
 
