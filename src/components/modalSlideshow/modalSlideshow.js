@@ -1,4 +1,4 @@
-import './buildcardmodal.css';
+import './modalSlideshow.css';
 import React, { useState } from "react";
 
 import { Swiper, SwiperSlide } from 'swiper/react';

@@ -9,7 +9,6 @@ function UserBody() {
             <div className="container">
                 <div className="sectionbox userbodybackground">
                     <BuildCard />
-                    <BuildCard />
                 </div>
             </div>
             </section>

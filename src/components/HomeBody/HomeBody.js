@@ -14,9 +14,6 @@ function HomeBody() {
           <h2 className="bodyheader alignleft">Featured Builds</h2>
           <div>
             <BuildCard />
-            <BuildCard />
-            <BuildCard />
-            <BuildCard />
           </div>
         </div>
       </div>
