@@ -20,6 +20,22 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
+    usertitle: {
+      type: String,
+      required: true
+    },
+    city: {
+      type: String,
+      required: true
+    },
+    state: {
+      type: String,
+      required: true
+    },
+    profileimg: {
+      type: String,
+      required: true
+    },
     builds: [
       {
         type: Schema.Types.ObjectId,
@@ -55,7 +71,7 @@ userSchema.methods.isCorrectPassword = async function(password) {
   return bcrypt.compare(password, this.password);
 };
 
-userSchema.virtual('friendCount').get(function() {
+userSchema.virtual('followerCount').get(function() {
   return this.friends.length;
 });
 

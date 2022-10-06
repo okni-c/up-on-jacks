@@ -21,6 +21,10 @@ type User {
     username: String
     email: String
     followerCount: Int
+    usertitle: String
+    city: String
+    state: String
+    profileimg: String
     builds: [Build]
     followers: [User]
   }

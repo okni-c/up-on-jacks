@@ -28,6 +28,10 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      usertitle
+      city
+      state
+      profileimg
       followerCount
       followers {
         _id
