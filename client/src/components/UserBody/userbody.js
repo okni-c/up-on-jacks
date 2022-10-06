@@ -21,11 +21,11 @@ function UserBody() {
     return (
         <>
             <div className='userHeroBackground'>
-                <div className="userhero container"><img src="https://pm1.narvii.com/6311/dfa4b3ca3ad2c29eacb0b3d540ae4d6258066d24_hq.jpg" alt='User Profile' />
+                <div className="userhero container"><img src={user.profileimg} alt='User Profile' />
                     <div className="userinfo">
                         <h2>{user.username}</h2>
-                        <p>Mazda Driver</p>
-                        <p>Mazdatown, TN</p>
+                        <p>{user.usertitle}</p>
+                        <p>{user.city}, {user.state}</p>
                     </div>
                 </div>
             </div>

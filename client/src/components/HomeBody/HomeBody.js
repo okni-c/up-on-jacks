@@ -10,24 +10,29 @@ function HomeBody() {
   const builds = data?.builds || [];
 
   return (
-    <section className="backgroundcolor">
-      <div className="container">
-        <div className="sectionbox">
-          <h2 className="bodyheader">Search Builds</h2>
-          <input type="text" className="searchbar" placeholder="Search for your hoopty" />
-        </div>
-        <div className="sectionbox">
-          <h2 className="bodyheader alignleft">Featured Builds</h2>
-          <div>
-            {loading ? (
-              <h3>Loading...</h3>
-            ) : (
-              <BuildCard builds={builds} />
-            )}
+    <>
+      <div className='userHeroBackground'>
+        <div className="hero container"><h2>The Real Car Social Media Site</h2></div>
+      </div>
+      <section className="backgroundcolor">
+        <div className="container">
+          <div className="sectionbox">
+            <h2 className="bodyheader">Search Builds</h2>
+            <input type="text" className="searchbar" placeholder="Search for your hoopty" />
+          </div>
+          <div className="sectionbox">
+            <h2 className="bodyheader alignleft">Featured Builds</h2>
+            <div>
+              {loading ? (
+                <h3>Loading...</h3>
+              ) : (
+                <BuildCard builds={builds} />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

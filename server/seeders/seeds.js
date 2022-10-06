@@ -17,8 +17,9 @@ db.once('open', async () => {
     const usertitle = faker.name.jobTitle();
     const city = faker.address.city();
     const state = faker.address.stateAbbr();
+    const profileimg = 'https://loremflickr.com/960/540/people';
 
-    userData.push({ username, email, password, usertitle, city, state });
+    userData.push({ username, email, password, usertitle, city, state, profileimg });
   }
 
   const createdUsers = await User.collection.insertMany(userData);

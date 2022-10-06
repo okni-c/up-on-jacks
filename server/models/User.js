@@ -72,7 +72,7 @@ userSchema.methods.isCorrectPassword = async function(password) {
 };
 
 userSchema.virtual('followerCount').get(function() {
-  return this.friends.length;
+  return this.followers.length;
 });
 
 const User = model('User', userSchema);
