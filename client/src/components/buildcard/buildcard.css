@@ -91,9 +91,37 @@
 
 .modalDesc{
     background-color: #CD2E35;
-    color: #F7F7F7;
     border-radius: 10px;
     padding: 10px;
+    margin: 15px;
+    font-weight: 700;
+}
+
+.modalDesc div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalDesc > p {
+    background-color: #F7F7F7;
+    border-radius: 6px;
+    color: #CD2E35;
+    margin-top: 3px;
+    padding: 5px;
+}
+
+#bio {
+    color: #F7F7F7;
+}
+
+.modalDesc div p {
+    color: #F7F7F7;
+    margin: 0;
+}
+
+.modalDesc div p a {
+    text-decoration: none;
+    color: #000000;
 }
 
 .Modal h3 a:hover {

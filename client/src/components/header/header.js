@@ -8,12 +8,11 @@ function Header() {
       <div className="headerBoxBull container">
         <Link to='/' className="headerLink"><img src={logo} alt="up-on-jacks-logo" className="headerLogo" /></Link>
         <ul className="headerList">
-          <li><a href="/">About</a></li>
-          <li><a href="/">Sign Up</a></li>
-          <li><a href="/">Log In</a></li>
+          <li><Link to='/about'>About</Link></li>
+          <li><Link to='/signup'>Sign Up</Link></li>
+          <li><Link to='/login'>Login</Link></li>
         </ul>
       </div>
-      <div className="hero container"><h2>The Real Car Social Media Site</h2></div>
     </div>
   );
 }

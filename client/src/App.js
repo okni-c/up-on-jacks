@@ -4,11 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from './pages/Home/home';
 import UserProfile from './pages/UserProfile/userprofile';
+import Login from './pages/Login/login';
+import SignUp from './pages/Signup/signup';
+import NoMatch from './pages/NoMatch/nomatch';
 
 import './App.css';
 
 const httpLink = createHttpLink({
-    uri: 'http://localhost:3001/graphql',
+    uri: '/graphql',
 });
 
 const client = new ApolloClient({
@@ -21,10 +24,11 @@ function App() {
         <ApolloProvider client={client}>
             <Router>
                 <Routes>
-                    <Route path='/' element={<Home />}>
-                    </Route>
-                    <Route path='/userprofile' element={<UserProfile />}>
-                    </Route>
+                    <Route exact path='/' element={<Home />} />
+                    <Route exact path='/profile/:username' element={<UserProfile />} />
+                    <Route exact path='/login' element={<Login />} />
+                    <Route exact path='/signup' element={<SignUp />} />
+                    <Route path='*' element={<NoMatch />} />
                 </Routes>
             </Router>
         </ApolloProvider>

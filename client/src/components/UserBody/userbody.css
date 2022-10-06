@@ -1,3 +1,54 @@
 .userbodybackground{
     background-color: #3E3E3E;
 }
+
+.userHeroBackground {
+    background-color: #2E2E2E;
+    border-bottom: 5px solid #CD2E35;
+}
+
+.userhero{
+    display: flex;
+    align-items: center;
+    padding: 60px 0 30px 25px;
+}
+
+.userinfo *{
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.userinfo{
+    padding-left: 20px;
+}
+
+.userinfo h2{
+    font-size: 35px;
+}
+
+.userhero img{
+    border-radius: 50%;
+    height: 200px;
+    max-width: 200px;
+    width: 100%;
+    border: 5px solid #CD2E35;
+    object-fit: cover;
+}
+
+.userBackground {
+    background-color: #2E2E2E;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.userLogo {
+    width: 30%;
+    height: auto;
+    margin: 20px;
+    object-fit: contain;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 0 10px;
+    border-radius: 15px;
+}

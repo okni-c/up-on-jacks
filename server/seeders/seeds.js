@@ -42,7 +42,7 @@ db.once('open', async () => {
 
     const manufacturer = faker.vehicle.manufacturer();
     const model = faker.vehicle.model();
-    const year = faker.finance.account(4);
+    const year = faker.finance.amount(1970, 2015, 0);
     const img = 'https://loremflickr.com/960/540/car';
 
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);

@@ -13,6 +13,7 @@ type Build {
     year: Int
     img: String
     commentCount: Int
+    comments: [Comment]
 }
 
 type User {

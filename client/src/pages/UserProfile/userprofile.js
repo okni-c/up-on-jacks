@@ -1,12 +1,13 @@
-import UserHeader from '../../components/userheader/userheader';
+import Header from '../../components/header/header';
 import UserBody from '../../components/UserBody/userbody';
 import Footer from '../../components/footer/footer';
 import './userprofile.css';
 
+
 function Userprofile() {
     return (
         <>
-            <UserHeader />
+            <Header />
             <UserBody />
             <Footer />
         </>
