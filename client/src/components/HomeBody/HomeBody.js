@@ -1,5 +1,6 @@
 import './HomeBody.css';
 import BuildCard from '../buildcard/buildcard';
+import SearchBar from '../searchBar/searchBar';
 import { useQuery } from '@apollo/client';
 import { QUERY_BUILDS } from '../../utils/queries';
 
@@ -16,10 +17,7 @@ function HomeBody() {
       </div>
       <section className="backgroundcolor">
         <div className="container">
-          <div className="sectionbox">
-            <h2 className="bodyheader">Search Builds</h2>
-            <input type="text" className="searchbar" placeholder="Search for your hoopty" />
-          </div>
+          <SearchBar />
           <div className="sectionbox">
             <h2 className="bodyheader alignleft">Featured Builds</h2>
             <div>

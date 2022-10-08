@@ -8,7 +8,9 @@ const CommentList = ({ comments }) => {
                 <div className='modalDesc'>
                     <p>{comment.commentBody}</p>
                     <div>
-                        <p>Made by: <Link to={`/profile/${comment.username}`}>{comment.username}</Link></p>
+                        <p>Made by: <Link to={`/profile/${comment.username}`}>
+                            <img src={comment.profileimg} className="followerProfileImg" alt="test" />
+                            {comment.username}</Link></p>
                         <p>Comment Date: {comment.createdAt}</p>
                     </div>
                 </div>

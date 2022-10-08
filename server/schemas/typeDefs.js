@@ -10,10 +10,12 @@ type Build {
     username: String
     manufacturer: String
     model: String
-    year: Int
+    year: String
     img: String
     commentCount: Int
     comments: [Comment]
+    buildimages: [Image]
+    mods: [Mod]
 }
 
 type User {
@@ -36,6 +38,16 @@ type Comment {
     username: String
   }
 
+type Mod {
+  _id: ID
+  modtitle: String
+}
+
+type Image {
+  _id: ID
+  image: String
+}
+
 type Auth {
     token: ID!
     user: User
@@ -44,6 +56,10 @@ type Auth {
 type Query {
     builds(username: String): [Build]
   }
+
+type Query {
+    searchBuilds(search: String): [Build]
+}
 
 type Query {
     me: User

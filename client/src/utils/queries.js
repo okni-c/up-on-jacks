@@ -1,5 +1,34 @@
 import { gql } from '@apollo/client';
 
+export const QUERY_SEARCH = gql`
+query searchBuilds($search: String) {
+  searchBuilds(search: $search) {
+    _id
+    buildDescription
+    createdAt
+    username
+    manufacturer
+    model
+    year
+    mods {
+      _id
+      modtitle
+    }
+    buildimages {
+      _id
+      image
+    }
+    commentCount
+    comments {
+      _id
+      createdAt
+      username
+      commentBody
+    }
+  }
+}
+`;
+
 export const QUERY_BUILDS = gql`
   query builds($username: String) {
     builds(username: $username) {
@@ -10,7 +39,14 @@ export const QUERY_BUILDS = gql`
       manufacturer
       model
       year
-      img
+      mods {
+        _id
+        modtitle
+      }
+      buildimages {
+        _id
+        image
+      }
       commentCount
       comments {
         _id
@@ -45,7 +81,14 @@ export const QUERY_USER = gql`
         manufacturer
         model
         year
-        img
+        mods {
+          _id
+          modtitle
+        }
+        buildimages {
+          _id
+          image
+        }
         commentCount
         comments {
           _id

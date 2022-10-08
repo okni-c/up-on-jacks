@@ -20,6 +20,11 @@ const resolvers = {
             const params = username ? { username } : {};
             return Build.find(params).sort({ createdAt: -1 });
         },
+        // search for builds by keyword (searchbar)
+        searchBuilds: async (parent, { search }) => {
+            return Build.find({$text: {$search: search}}).sort({score:{$meta:"textScore"}});
+        },
+        // get one build by id
         build: async (parent, { _id }) => {
             return Build.findOne({ _id });
         },
@@ -36,7 +41,7 @@ const resolvers = {
                 .select('-__v -password')
                 .populate('followers')
                 .populate('builds');
-        },
+        }
     },
     Mutation: {
         addUser: async (parent, args) => {

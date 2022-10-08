@@ -2,6 +2,7 @@ import './buildcard.css';
 
 import ModalSlideshow from '../modalSlideshow/modalSlideshow';
 import CommentList from '../commentList/commentList';
+import BuildImage from './buildImage/buildImage';
 
 import close from '../../assets/closebutton.png';
 
@@ -26,7 +27,7 @@ function BuildCard({ builds }) {
                 setModalIsOpen(true);
                 setModalData(build);
             }}>
-                <img src={build.img} alt="Build Car" className="buildcardimage" />
+                <BuildImage buildimages={build.buildimages}/>
                 <div className="buildcardinfo">
                     <h3 className="buildcardheader">{build.username}'s {build.year} {build.manufacturer} {build.model}</h3>
                     <div className="buildcardbody">
@@ -56,19 +57,16 @@ function BuildCard({ builds }) {
                 <h3><Link to={`/profile/${modalData.username}`} onClick={() => {
                     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 }}>{modalData.username}'s {modalData.year} {modalData.manufacturer} {modalData.model}</Link></h3>
-                <ModalSlideshow />
+                <ModalSlideshow slideImages={modalData.buildimages} />
                 <h3>Biography</h3>
                 <p className='modalDesc' id='bio'>{modalData.buildDescription}</p>
+                <h3>Mod List</h3>
+                 <ul className='modalDesc'>
+                    {modalData.mods && modalData.mods.map(mods =>
+                    <li key={mods._id}>{mods.modtitle}</li>)}
+                </ul>
                 <h3>Comments: {modalData.commentCount}</h3>
                 <CommentList comments={modalData.comments}/>
-                {/*<h3</h3>
-                 <ul>
-                    {Array.isArray(modalData.mods)
-                        ? modalData.mods.map((mod, index) => {
-                            return <li key={index}>{mod}</li>
-                        })
-                        :null}
-                </ul> */}
             </Modal>
         </>
     );

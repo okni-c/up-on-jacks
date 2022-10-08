@@ -17,7 +17,7 @@ db.once('open', async () => {
     const usertitle = faker.name.jobTitle();
     const city = faker.address.city();
     const state = faker.address.stateAbbr();
-    const profileimg = 'https://loremflickr.com/960/540/people';
+    const profileimg = 'https://loremflickr.com/960/540/avatar';
 
     userData.push({ username, email, password, usertitle, city, state, profileimg });
   }
@@ -42,11 +42,11 @@ db.once('open', async () => {
   // create builds
   let createdBuilds = [];
   for (let i = 0; i < 100; i += 1) {
-    const buildDescription = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+    const buildDescription = faker.lorem.paragraph(4,'\n');
 
     const manufacturer = faker.vehicle.manufacturer();
     const model = faker.vehicle.model();
-    const year = faker.finance.amount(1970, 2015, 0);
+    const year = faker.finance.amount(1970, 2015, 0).toString();
     const img = 'https://loremflickr.com/960/540/car';
 
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
@@ -75,6 +75,34 @@ db.once('open', async () => {
     await Build.updateOne(
       { _id: buildId },
       { $push: { comments: { commentBody, username } } },
+      { runValidators: true }
+    );
+  }
+
+  // create build images
+  for (let i = 0; i < 500; i += 1) {
+    const image = 'https://loremflickr.com/960/540/car';
+
+    const randomBuildIndex = Math.floor(Math.random() * createdBuilds.length);
+    const { _id: buildId } = createdBuilds[randomBuildIndex];
+
+    await Build.updateOne(
+      { _id: buildId },
+      { $push: { buildimages: { image } } },
+      { runValidators: true }
+    );
+  }
+
+  // create modlist
+  for (let i = 0; i < 550; i += 1) {
+    const modtitle = faker.commerce.productMaterial() + ' ' + faker.commerce.product();
+
+    const randomBuildIndex = Math.floor(Math.random() * createdBuilds.length);
+    const { _id: buildId } = createdBuilds[randomBuildIndex];
+
+    await Build.updateOne(
+      { _id: buildId },
+      { $push: { mods: { modtitle } } },
       { runValidators: true }
     );
   }

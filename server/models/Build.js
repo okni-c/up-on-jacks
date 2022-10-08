@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 const commentSchema = require('./Comment');
+const imageSchema = require('./Build Images');
+const modSchema = require('./Build Mods');
 const dateFormat = require('../utils/dateFormat');
 
 const buildSchema = new Schema(
@@ -8,7 +10,7 @@ const buildSchema = new Schema(
       type: String,
       required: 'You need a description, car person!',
       minlength: 1,
-      maxlength: 280
+      maxlength: 500
     },
     createdAt: {
       type: Date,
@@ -28,15 +30,13 @@ const buildSchema = new Schema(
       required: true,
     },
     year: {
-      type: Number,
+      type: String,
       required: true,
       minlength: 4,
       maxlength: 4
     },
-    img: {
-      type: String,
-      required: false
-    },
+    mods: [modSchema],
+    buildimages: [imageSchema],
     comments: [commentSchema]
   },
   {
@@ -45,6 +45,10 @@ const buildSchema = new Schema(
     }
   }
 );
+
+buildSchema.index({ 
+'$**': 'text'
+});
 
 buildSchema.virtual('commentCount').get(function() {
   return this.comments.length;

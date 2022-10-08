@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { QUERY_USER } from '../../utils/queries';
 
 import BuildCard from "../buildcard/buildcard";
+import FollowerList from './FollowerList/FollowerList';
+
 import '../HomeBody/HomeBody.css';
 import './userbody.css';
 
@@ -26,6 +28,10 @@ function UserBody() {
                         <h2>{user.username}</h2>
                         <p>{user.usertitle}</p>
                         <p>{user.city}, {user.state}</p>
+                        <FollowerList username={user.username}
+                        profileimg={user.profileimg}
+                        followerCount={user.followerCount}
+                        followers={user.followers} />
                     </div>
                 </div>
             </div>
