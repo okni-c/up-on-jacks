@@ -3,6 +3,7 @@ import './buildcard.css';
 import ModalSlideshow from '../modalSlideshow/modalSlideshow';
 import CommentList from '../commentList/commentList';
 import BuildImage from './buildImage/buildImage';
+import { motion } from 'framer-motion';
 
 import close from '../../assets/closebutton.png';
 
@@ -23,11 +24,21 @@ function BuildCard({ builds }) {
 
     return (
         <>{builds && builds.map(build => (
-            <div key={build._id} className="buildcardcontainer" onClick={() => {
+            <motion.div key={build._id} className="buildcardcontainer" onClick={() => {
                 setModalIsOpen(true);
                 setModalData(build);
-            }}>
-                <BuildImage buildimages={build.buildimages}/>
+            }} initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                    default: {
+                        duration: 0.1,
+                        ease: "linear"
+                    },
+                    scale: {
+                        type: "spring"
+                    }
+                }}>
+                <BuildImage buildimages={build.buildimages} />
                 <div className="buildcardinfo">
                     <h3 className="buildcardheader">{build.username}'s {build.year} {build.manufacturer} {build.model}</h3>
                     <div className="buildcardbody">
@@ -43,7 +54,7 @@ function BuildCard({ builds }) {
                         </div>
                     </div>
                 </div>
-            </div>))}
+            </motion.div>))}
             <Modal
                 isOpen={modalIsOpen}
                 closeTimeoutMS={200}
@@ -61,12 +72,12 @@ function BuildCard({ builds }) {
                 <h3>Biography</h3>
                 <p className='modalDesc' id='bio'>{modalData.buildDescription}</p>
                 <h3>Mod List</h3>
-                 <ul className='modalDesc'>
+                <ul className='modalDesc'>
                     {modalData.mods && modalData.mods.map(mods =>
-                    <li key={mods._id}>{mods.modtitle}</li>)}
+                        <li key={mods._id}>{mods.modtitle}</li>)}
                 </ul>
                 <h3>Comments: {modalData.commentCount}</h3>
-                <CommentList comments={modalData.comments}/>
+                <CommentList comments={modalData.comments} />
             </Modal>
         </>
     );

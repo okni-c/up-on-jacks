@@ -4,6 +4,7 @@ import { QUERY_USER } from '../../utils/queries';
 
 import BuildCard from "../buildcard/buildcard";
 import FollowerList from './FollowerList/FollowerList';
+import { motion } from 'framer-motion';
 
 import '../HomeBody/HomeBody.css';
 import './userbody.css';
@@ -21,7 +22,7 @@ function UserBody() {
     }
 
     return (
-        <>
+        <motion.div initial={{width: 0}} animate={{width: "100%"}} exit={{x: window.innerWidth, transition: { duration: 0.1 }}}>
             <div className='userHeroBackground'>
                 <div className="userhero container"><img src={user.profileimg} alt='User Profile' />
                     <div className="userinfo">
@@ -42,7 +43,7 @@ function UserBody() {
                     </div>
                 </div>
             </section>
-        </>
+        </motion.div>
     );
 }
 

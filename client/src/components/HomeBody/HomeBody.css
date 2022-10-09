@@ -10,7 +10,7 @@
 .bodyheader {
   text-align: center;
   font-size: 35px;
-  color: white;
+  color: #f7f7f7;
 }
 
 .alignleft {
@@ -26,6 +26,7 @@
   max-width: 800px;
   width: 100%;
   font-size: 18px;
+  color: #f7f7f7;
   background-color: #CD2E35;
   border: none;
   /* filter: drop-shadow(0 4px 12px rgb(148, 147, 147)); */
@@ -34,12 +35,12 @@
 }
 
 .searchbar::placeholder {
-  color: white;
+  color: #f7f7f7;
 }
 
 .searchbar:focus-visible {
   outline: none;
-  background-color: white;
+  background-color: #f7f7f7;
   color: #CD2E35;
   scale: 1.2;
 }

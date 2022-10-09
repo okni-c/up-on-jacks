@@ -1,11 +1,12 @@
 import Footer from "../../components/footer/footer";
 import Header from "../../components/header/header";
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 
 function SignUp() {
     return (
-        <>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Header />
             <div className='userHeroBackground'>
             </div>
@@ -23,7 +24,7 @@ function SignUp() {
             </div>
             </div>
             <Footer />
-        </>
+        </motion.div>
     );
 }
 
