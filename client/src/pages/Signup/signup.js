@@ -8,9 +8,9 @@ function SignUp() {
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Header />
+            <motion.div initial={{width: 0}} animate={{width: "100%", transition: { duration: 0.5 }}} exit={{x: window.innerWidth, transition: { duration: 0.3 }}}>
             <div className='userHeroBackground'>
             </div>
-            <div className="backgroundcolor">
             <div className="container">
                 <div className="loginBox">
                     <h3>Sign Up</h3>
@@ -21,8 +21,9 @@ function SignUp() {
                     <button type="button">Sign Up</button>
                     <p>Already have an account? <Link to='/login'>Log In!</Link></p>
                 </div>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             </div>
-            </div>
+            </motion.div>
             <Footer />
         </motion.div>
     );
