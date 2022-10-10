@@ -14,10 +14,11 @@ function AnimateRoutes() {
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/profile/:username' element={<UserProfile />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/signup' element={<SignUp />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/profile' element={<UserProfile />} />
+        <Route path='/profile/:username' element={<UserProfile />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
         <Route path='*' element={<NoMatch />} />
       </Routes>
     </AnimatePresence>

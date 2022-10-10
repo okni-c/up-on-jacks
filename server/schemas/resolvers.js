@@ -22,7 +22,7 @@ const resolvers = {
         },
         // search for builds by keyword (searchbar)
         searchBuilds: async (parent, { search }) => {
-            return Build.find({$text: {$search: search}}).sort({score:{$meta:"textScore"}});
+            return Build.find({ $text: { $search: search } }).sort({ score: { $meta: "textScore" } });
         },
         // get one build by id
         build: async (parent, { _id }) => {
@@ -79,6 +79,19 @@ const resolvers = {
                 );
 
                 return build;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addFollower: async (parent, { followerId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { followers: followerId } },
+                    { new: true }
+                ).populate('followers');
+
+                return updatedUser;
             }
 
             throw new AuthenticationError('You need to be logged in!');

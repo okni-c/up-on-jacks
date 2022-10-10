@@ -22,19 +22,19 @@ const userSchema = new Schema(
     },
     usertitle: {
       type: String,
-      required: true
+      required: false
     },
     city: {
       type: String,
-      required: true
+      required: false
     },
     state: {
       type: String,
-      required: true
+      required: false
     },
     profileimg: {
       type: String,
-      required: true
+      required: false
     },
     builds: [
       {
