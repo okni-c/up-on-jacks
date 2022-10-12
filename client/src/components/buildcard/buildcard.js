@@ -5,7 +5,7 @@ import CommentList from '../commentList/commentList';
 import BuildImage from './buildImage/buildImage';
 import { motion } from 'framer-motion';
 
-import close from '../../assets/closebutton.png';
+import close from '../../assets/webp/closebutton.webp';
 
 import React from 'react';
 import { useState } from 'react';

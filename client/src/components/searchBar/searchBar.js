@@ -4,7 +4,7 @@ import { QUERY_SEARCH } from "../../utils/queries";
 import { motion } from 'framer-motion';
 import BuildCard from "../buildcard/buildcard";
 
-import './searchBar.css';
+import './searchBar.scss';
 
 function SearchBar() {
     const [searchTerm, setSearchTerm] = useState("");

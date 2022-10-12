@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 
 import Auth from '../../utils/auth';
 
-import '../HomeBody/HomeBody.css';
+import '../HomeBody/HomeBody.scss';
 import './userbody.css';
 
 function UserBody() {

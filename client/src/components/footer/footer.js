@@ -1,11 +1,11 @@
-import logo from '../../assets/ModernLogoConcept.png';
-import twitter from '../../assets/tw-social-icon.png'
-import tiktok from '../../assets/tt-social-icon.png'
-import youtube from '../../assets/yt-social-icon.png'
+import logo from '../../assets/webp/modernlogo.webp';
+import twitter from '../../assets/webp/tw-social-icon.webp'
+import tiktok from '../../assets/webp/tt-social-icon.webp'
+import youtube from '../../assets/webp/yt-social-icon.webp'
 
 import { Link } from 'react-router-dom';
 
-import './footer.css';
+import './footer.scss';
 
 function Footer() {
     return (

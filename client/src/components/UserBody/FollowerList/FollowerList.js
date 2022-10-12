@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Modal from 'react-modal';
 
-import close from '../../../assets/closebutton.png';
+import close from '../../../assets/webp/closebutton.webp';
 
 import './FollowerList.css';
 
