@@ -19,8 +19,9 @@ function Header() {
   const [opened, setOpened] = useState(false);
   const [rotate, setRotate] = useState({rotate: "0deg"});
 
-  function expand() {
+  async function expand() {
     setRotate({rotate: "180deg"});
+    await delay(110);
     setOpened(true);
   }
 
