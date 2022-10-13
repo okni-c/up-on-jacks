@@ -22,9 +22,9 @@ function SearchBar() {
 
     return (
         <div className="sectionbox">
-            <h2 className="bodyheader">Search Builds</h2>
+            <h2 className="bodyheader" id='searchHeading'>Search Builds</h2>
             <form onSubmit={handleFormSubmit}>
-                <input type="text" className="searchbar" placeholder="Search for your hoopty" name="search" id="search" onChange={event => setSearchTerm(event.target.value)} />
+                <input aria-labelledby='searchHeading' type="text" className="searchbar" placeholder="Search for your hoopty" name="search" id="search" onChange={event => setSearchTerm(event.target.value)} />
             </form>
             <br />
 

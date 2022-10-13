@@ -11,8 +11,6 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
-// import { model } from 'mongoose';
-
 
 
 // Modal.setAppElement('#modal');

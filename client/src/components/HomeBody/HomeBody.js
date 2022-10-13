@@ -4,7 +4,7 @@ import SearchBar from '../searchBar/searchBar';
 import FollowerList from '../UserBody/FollowerList/FollowerList';
 import { useQuery } from '@apollo/client';
 import { QUERY_BUILDS, QUERY_ME_BASIC } from '../../utils/queries';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 import Auth from '../../utils/auth';
 
@@ -19,9 +19,9 @@ function HomeBody() {
   const loggedIn = Auth.loggedIn();
 
   return (
-    <motion.div>
+    <div>
       <div className='userHeroBackground'>
-        <div className="hero container"><h2>The Real Car Social Media Site</h2></div>
+        <div className="hero container"><h1>The Real Car Social Media Site</h1></div>
       </div>
       {loggedIn && userData ? (
         <div>
@@ -49,7 +49,7 @@ function HomeBody() {
           </div>
         </div>
       </section>
-    </motion.div>
+    </div>
   )
 }
 

@@ -53,37 +53,58 @@
 .userIconButton {
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    padding: 5px;
     margin: 0;
     background: none;
     border: none;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     img {
-        width: 50px;
-        height: 50px;
+        transition: all 0.1s ease-in-out;
+    }
+
+    img:first-of-type {
+        width: 65px;
+        height: auto;
+        aspect-ratio: 1 / 1;
         border: 2px solid;
         background-color: #f7f7f7;
         object-fit: contain;
         border-radius: 100px;
     }
 
+    img:last-of-type {
+        width: 20px;
+        height: auto;
+        padding: 10px;
+    }
+
     p {
         color: #f7f7f7;
         font-size: 25px;
-        padding-left: 10px;
+        padding: 0 10px 0 0;
+        margin: 0;
+
+        @media (max-width: 600px) {
+            display: none;
+        }
     }
 
     &:hover {
         cursor: pointer;
-        background-color: #CD2E35;
-        border-radius: 15px;
+
+        @media (min-width: 600px) {
+            background-color: #00000029;
+            border-radius: 100px;
+            scale: 1.07;
+        }
     }
 }
 
 .userDropdown {
     position: absolute;
     right: 1%;
+    top: 106%;
     width: 250px;
     z-index: 1;
     border: 1px solid rgba(0, 0, 0, 0.04);
@@ -94,6 +115,11 @@
     color: #2E2E2E;
     font-weight: 700;
     padding: 8px;
+    transition: all 0.2s ease-in-out;
+
+    @media (max-width: 600px) {
+        box-shadow: 2px 5px 25px -1px rgb(0 0 0 / 73%);
+    }
 
     p {
         text-align: center;
@@ -133,6 +159,23 @@
                 &:hover {
                     background-color: rgba(0, 0, 0, 0.15);
                     color: #f7f7f7;
+
+                    img {
+                        -webkit-filter: invert(1);
+                        filter: invert(1);
+                    }
+                }
+            }
+        }
+
+        #logout {
+            a {
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                color: #f7f7f7;
+                background-color: #CD2E35;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.15);
                 }
             }
         }
