@@ -1,4 +1,10 @@
 {
+  "name": "up-on-jacks",
+  "description": "A social media app for real car people.",
+  "version": "0.5.0",
+  "engines": {
+    "node": "16.x"
+  },
   "devDependencies": {
     "concurrently": "^7.4.0"
   },
