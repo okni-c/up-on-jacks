@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Serve up static assets
-if (process.env.NODE_ENV === 'up-on-jacks') {
+if (process.env.NODE_ENV === 'Production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
