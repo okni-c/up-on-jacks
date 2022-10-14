@@ -1,6 +1,5 @@
 {
   "private": true,
-  "proxy": "http://localhost:3001",
   "dependencies": {
     "@apollo/client": "^3.7.0",
     "@testing-library/jest-dom": "^5.16.4",

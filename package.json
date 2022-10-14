@@ -6,8 +6,7 @@
     "node": "16.x"
   },
   "devDependencies": {
-    "concurrently": "^7.4.0",
-    "react-router-dom": "^6.4.2"
+    "concurrently": "^7.4.0"
   },
   "scripts": {
     "start": "node server/server.js",
