@@ -34,6 +34,20 @@
     h2 {
         font-size: 35px;
     }
+
+    button {
+        background-color: #CD2E35;
+        font-size: 18px;
+        border-radius: 10px;
+        padding: 4px 16px;
+        font-weight: bold;
+        border: none;
+        margin-top: 10px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .userBackground {
