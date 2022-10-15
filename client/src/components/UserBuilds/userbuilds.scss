@@ -1,0 +1,28 @@
+.buildsOptions {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+
+    li {
+        font-size: 18px;
+        padding: 10px;
+        margin: 0;
+
+        @media (max-width: 391px) {
+            align-self: center;
+            padding: 3px;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            color: #f7f7f7;
+
+            &:hover {
+                text-decoration: underline;
+                color: #CD2E35;
+                cursor: pointer;
+            }
+        }
+    }
+}

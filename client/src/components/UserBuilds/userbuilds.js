@@ -1,11 +1,10 @@
 import { useQuery, useMutation } from '@apollo/client';
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 
 import BuildCard from "../buildcard/buildcard";
 import { motion } from 'framer-motion';
-
-import Auth from '../../utils/auth';
+import { Link } from 'react-router-dom';
 
 import './userbuilds.scss';
 
@@ -16,11 +15,6 @@ function UserBuilds() {
     });
 
     const user = data?.me || data?.user || {};
-
-    // redirect to personal profile page if username is the logged-in user's
-    // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    //     return redirect("/profile");
-    // }
 
     if (!user?.username) {
         return (
@@ -35,21 +29,14 @@ function UserBuilds() {
         return <div>Loading...</div>;
     }
 
-    // const handleClick = async () => {
-    //     try {
-    //         await addFollower({
-    //             variables: { id: user._id }
-    //         });
-    //     } catch (e) {
-    //         console.error(e);
-    //     }
-    // };
-
     return (
         <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}>
             <div className='userHeroBackground'></div>
             <section className="userbodybackground">
                 <div className="container">
+                    <ul className="buildsOptions">
+                        <li><Link to="/">+Add New Build</Link></li>
+                    </ul>
                     <div className="sectionbox userbodybackground">
                         <BuildCard builds={user.builds} />
                     </div>
