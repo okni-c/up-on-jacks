@@ -1,7 +1,8 @@
 import { useQuery, useMutation } from '@apollo/client';
-import { redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 import { ADD_FOLLOWER } from '../../utils/mutations';
+import { Navigate } from 'react-router-dom';
 
 import BuildCard from "../buildcard/buildcard";
 import FollowerList from './FollowerList/FollowerList';
@@ -28,7 +29,7 @@ function UserBody() {
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return redirect("/profile");
+        return <Navigate to="/profile" />;
     }
 
     if (!user?.username) {

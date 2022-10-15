@@ -4,11 +4,48 @@ import { QUERY_USER, QUERY_ME } from '../../utils/queries';
 
 import BuildCard from "../buildcard/buildcard";
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+
+import close from '../../assets/webp/closebutton.webp';
+
+import { useState } from 'react';
+
+import Modal from 'react-modal';
 
 import './userbuilds.scss';
+import { ADD_BUILD } from '../../utils/mutations';
 
 function UserBuilds() {
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [addBuild] = useMutation(ADD_BUILD);
+
+    const [formState, setFormState] = useState({
+        buildDescription: '',
+        year: '',
+        manufacturer: '',
+        model: ''
+    });
+
+    // update state based on form input changes
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
+    // submit form
+    const handleFormSubmit = async (event) => {
+        try {
+            await addBuild({
+                variables: { ...formState },
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
     const { username: userParam } = useParams();
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
         variables: { username: userParam }
@@ -29,20 +66,77 @@ function UserBuilds() {
         return <div>Loading...</div>;
     }
 
+    const handleClick = async () => {
+        setModalIsOpen(true);
+    }
+
     return (
-        <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}>
-            <div className='userHeroBackground'></div>
-            <section className="userbodybackground">
-                <div className="container">
-                    <ul className="buildsOptions">
-                        <li><Link to="/">+Add New Build</Link></li>
-                    </ul>
-                    <div className="sectionbox userbodybackground">
-                        <BuildCard builds={user.builds} />
+        <>
+            <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}>
+                <div className='userHeroBackground'></div>
+                <section className="userbodybackground">
+                    <div className="container">
+                        <ul className="buildsOptions">
+                            <li><button onClick={handleClick}>+Add New Build</button></li>
+                        </ul>
+                        <div className="sectionbox userbodybackground">
+                            <BuildCard builds={user.builds} />
+                        </div>
                     </div>
-                </div>
-            </section>
-        </motion.div>
+                </section>
+            </motion.div>
+            <Modal
+                isOpen={modalIsOpen}
+                closeTimeoutMS={200}
+                onRequestClose={() => setModalIsOpen(false)}
+                contentLabel="Example Modal"
+                className="Modal"
+                overlayClassName="Overlay"
+                ariaHideApp={false}
+            >
+                <button onClick={() => setModalIsOpen(false)}><img src={close} alt="Close Button" /></button>
+                <h3>Build Form</h3>
+                <form onSubmit={handleFormSubmit}>
+                    <textarea
+                        placeholder="buildDescription"
+                        name="buildDescription"
+                        type="text"
+                        id="buildDescription"
+                        rows="4" cols="50"
+                        value={formState.buildDescription}
+                        onChange={handleChange}
+                    />
+                    <input
+                        placeholder="year"
+                        name="year"
+                        type="text"
+                        id="year"
+                        value={formState.year}
+                        onChange={handleChange}
+                    />
+                    <input
+                        placeholder="manufacturer"
+                        name="manufacturer"
+                        type="text"
+                        id="manufacturer"
+                        value={formState.manufacturer}
+                        onChange={handleChange}
+                    />
+                    <input
+                        placeholder="model"
+                        name="model"
+                        type="text"
+                        id="model"
+                        value={formState.model}
+                        onChange={handleChange}
+                    />
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+
+            </Modal>
+        </>
     );
 }
 

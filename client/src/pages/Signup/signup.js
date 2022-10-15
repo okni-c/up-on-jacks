@@ -77,7 +77,7 @@ function SignUp() {
                                     value={formState.password}
                                     onChange={handleChange}
                                 />
-                                <button className="btn d-block w-100" type="submit">
+                                <button type="submit">
                                     Sign Up
                                 </button>
                             </form>

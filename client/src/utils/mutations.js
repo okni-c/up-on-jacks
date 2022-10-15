@@ -37,3 +37,31 @@ export const ADD_FOLLOWER = gql`
     }
   }
 `;
+
+export const ADD_BUILD = gql`
+  mutation addBuild($buildDescription: String!, $manufacturer: String!, $model: String!, $year: String!) {
+    addBuild(buildDescription: $buildDescription, manufacturer: $manufacturer, model: $model, year: $year) {
+      _id
+      buildDescription
+      username
+      manufacturer
+      model
+      year
+      createdAt
+      commentCount
+      comments {
+        _id
+        commentBody
+        createdAt
+      }
+      buildimages {
+        _id
+        image
+      }
+      mods {
+        _id
+        modtitle
+      }
+    }
+  }
+`;
