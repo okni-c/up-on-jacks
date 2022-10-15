@@ -5,6 +5,7 @@ import Home from '../../pages/Home/home';
 import UserProfile from '../../pages/UserProfile/userprofile';
 import Login from '../../pages/Login/login';
 import SignUp from '../../pages/Signup/signup';
+import ManageBuilds from '../../pages/Builds/managebuilds';
 import NoMatch from '../../pages/NoMatch/nomatch';
 
 import { AnimatePresence } from 'framer-motion';
@@ -19,6 +20,7 @@ function AnimateRoutes() {
         <Route path='/profile/:username' element={<UserProfile />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/managebuilds' element={<ManageBuilds />} />
         <Route path='*' element={<NoMatch />} />
       </Routes>
     </AnimatePresence>
