@@ -1,4 +1,4 @@
-.userbodybackground{
+.userbodybackground {
     background-color: #3E3E3E;
 }
 
@@ -7,33 +7,33 @@
     border-bottom: 5px solid #CD2E35;
 }
 
-.userhero{
+.userhero {
     display: flex;
     align-items: center;
     padding: 60px 0 30px 25px;
+
+    img {
+        border-radius: 50%;
+        height: 200px;
+        max-width: 200px;
+        width: 100%;
+        border: 5px solid #CD2E35;
+        object-fit: cover;
+    }
 }
 
-.userinfo *{
-    color: white;
-    padding: 0;
-    margin: 0;
-}
-
-.userinfo{
+.userinfo {
     padding-left: 20px;
-}
 
-.userinfo h2{
-    font-size: 35px;
-}
+    * {
+        color: white;
+        padding: 0;
+        margin: 0;
+    }
 
-.userhero img{
-    border-radius: 50%;
-    height: 200px;
-    max-width: 200px;
-    width: 100%;
-    border: 5px solid #CD2E35;
-    object-fit: cover;
+    h2 {
+        font-size: 35px;
+    }
 }
 
 .userBackground {

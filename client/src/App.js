@@ -6,9 +6,6 @@ import { setContext } from '@apollo/client/link/context';
 
 import AnimateRoutes from './components/AnimateRoutes/AnimateRoutes';
 
-
-import './App.css';
-
 const httpLink = createHttpLink({
     uri: '/graphql',
 });

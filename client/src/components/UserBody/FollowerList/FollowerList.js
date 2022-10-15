@@ -5,7 +5,7 @@ import Modal from 'react-modal';
 
 import close from '../../../assets/webp/closebutton.webp';
 
-import './FollowerList.css';
+import './FollowerList.scss';
 
 const FollowerList = ({ followerCount, username, followers, profileimg }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
