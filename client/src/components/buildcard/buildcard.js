@@ -1,4 +1,4 @@
-import './buildcard.css';
+import './buildcard.scss';
 
 import ModalSlideshow from '../modalSlideshow/modalSlideshow';
 import CommentList from '../commentList/commentList';
