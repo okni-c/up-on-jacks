@@ -51,7 +51,7 @@ function Header() {
                 <p>Username</p>
                 <ul>
                   <li><Link to='/profile'><img aria-hidden="true" src={user} className="userP" alt="" />Profile</Link></li>
-                  <li><Link to='/'><img aria-hidden="true" src={sedan} className="userB" alt="" />Builds</Link></li>
+                  <li><Link to='/managebuilds'><img aria-hidden="true" src={sedan} className="userB" alt="" />Builds</Link></li>
                   <li><Link to='/'><img aria-hidden="true" src={followers} className="userF" alt="" />Following</Link></li>
                   <li><Link to='/'><img aria-hidden="true" src={settings} className="userS" alt="" />Settings</Link></li>
                   <li id='logout'><Link to='/' onClick={logout}>Logout</Link></li>
