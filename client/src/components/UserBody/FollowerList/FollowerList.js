@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
 import close from '../../../assets/webp/closebutton.webp';
@@ -9,6 +9,14 @@ import './FollowerList.scss';
 
 const FollowerList = ({ followerCount, username, followers, profileimg }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (modalIsOpen) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'unset'
+    }
+  }, [modalIsOpen])
 
 
   if (!followers || !followers.length) {

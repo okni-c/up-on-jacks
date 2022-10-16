@@ -6,12 +6,10 @@ import BuildCard from "../buildcard/buildcard";
 import { motion } from 'framer-motion';
 
 import close from '../../assets/webp/closebutton.webp';
-import addimage from '../../assets/webp/add-image.webp';
 import plus from '../../assets/webp/add.webp';
 import trash from '../../assets/webp/trash.webp';
-import sedan from '../../assets/webp/sedan.webp'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Modal from 'react-modal';
 
@@ -19,9 +17,17 @@ import './userbuilds.scss';
 import { ADD_BUILD } from '../../utils/mutations';
 
 function UserBuilds() {
-    const [modalIsOpen, setModalIsOpen] = useState(true);
-    const [modsFields, setModsFields] = useState([{ modtitle: '' }])
-    const [imgsFields, setImgsFields] = useState([{ image: '' }])
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modsFields, setModsFields] = useState([{ modtitle: '' }, { modtitle: '' }, { modtitle: '' }])
+    const [imgsFields, setImgsFields] = useState([{ image: '' },{ image: '' },{ image: '' }])
+
+    useEffect(() => {
+        if (modalIsOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+    }, [modalIsOpen])
 
     const [addBuild] = useMutation(ADD_BUILD);
 
@@ -126,124 +132,136 @@ function UserBuilds() {
                 <div className='userHeroBackground'></div>
                 <section className="userbodybackground">
                     <div className="container">
-                        <ul className="buildsOptions">
-                            <li><button onClick={handleClick}>+Add New Build</button></li>
-                        </ul>
+
+                        <button onClick={handleClick}>+Add New Build</button>
+
                         <div className="sectionbox userbodybackground">
                             <BuildCard builds={user.builds} />
                         </div>
+
                     </div>
                 </section>
             </motion.div>
+
             <Modal
                 isOpen={modalIsOpen}
                 closeTimeoutMS={200}
                 onRequestClose={() => setModalIsOpen(false)}
                 contentLabel="Example Modal"
-                className="Modal"
+                className="Modal buildModal"
                 overlayClassName="Overlay"
                 ariaHideApp={false}
             >
-                <button onClick={() => setModalIsOpen(false)}><img src={close} alt="Close Button" /></button>
-                <h3 className="formHeader">Create a New Build<img src={sedan} alt="sedan" className="headerCar"/></h3>
+                <div className='closebuttoncontainer'>
+                    <button onClick={() => setModalIsOpen(false)}>
+                        <img src={close} alt="Close Button" />
+                    </button>
+                </div>
+
+
+                <h3 className="formHeader">Create a new build</h3>
+
                 <form onSubmit={handleFormSubmit} className="buildForm">
-                    <div className="userInputs">
-                        <input
-                            placeholder="Year"
-                            name="year"
-                            type="text"
-                            id="year"
-                            value={formState.year}
-                            onChange={handleChange}
-                        />
-                        <input
-                            placeholder="Manufacturer"
-                            name="manufacturer"
-                            type="text"
-                            id="manufacturer"
-                            value={formState.manufacturer}
-                            onChange={handleChange}
-                        />
-                        <input
-                            placeholder="Model"
-                            name="model"
-                            type="text"
-                            id="model"
-                            value={formState.model}
-                            onChange={handleChange}
-                        />
+
+                    <div className="topInputs">
+                        <div>
+                            <label for="year">Year</label>
+                            <input
+                                placeholder="1997"
+                                name="year"
+                                type="text"
+                                id="year"
+                                value={formState.year}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label for="manufacturer">Make</label>
+                            <input
+                                placeholder="Mazda"
+                                name="manufacturer"
+                                type="text"
+                                id="manufacturer"
+                                value={formState.manufacturer}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label for="model">Model</label>
+                            <input
+                                placeholder="MX-5"
+                                name="model"
+                                type="text"
+                                id="model"
+                                value={formState.model}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
-                    <ul>
-                        <li className="clickAdd">Click to add Images<button onClick={addImgFields} className="addImagesButton"><img src={plus} alt="plus-sign" /></button></li>
+
+                    <h4>Add your images</h4>
+                    <div className='buildformbox'>
+
+                        <div className='imageDivTop'>
+                            <button onClick={addImgFields} className="addBtn">Click to add more Images
+                                <img src={plus} alt="plus-sign" />
+                            </button>
+                        </div>
+
                         {imgsFields.map((inputImg, index) => {
                             return (
-                                <li key={index}>
-                                    <button onClick={addImgFields}>Choose File</button>
+                                <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                                     <input
-                                        placeholder=""
+                                        placeholder="Enter img url..."
                                         name="image"
                                         type="text"
                                         value={inputImg.image}
                                         onChange={event => handleChangeImages(index, event)} />
-                                    <button onClick={event => removeImgFields(index, event)} className="removeButton"><img src={trash} alt="trashcan" /></button>
-                                </li>)
+                                    <button onClick={event => removeImgFields(index, event)} className="removeBtn buildFrmBtn"><img src={trash} alt="trashcan" /></button>
+                                </motion.div>
+                            )
                         })}
-                    </ul>
-                    <h4>Description</h4>
+
+                    </div>
+
+                    <h4>Biography</h4>
                     <textarea
-                        placeholder="Enter Description Here..."
+                        placeholder="I’ve had this car since......"
                         name="buildDescription"
                         type="text"
                         id="buildDescription"
-                        rows="4" cols="50"
                         value={formState.buildDescription}
                         onChange={handleChange}
                     />
-                    <h4>Mods</h4>
-                    <ul>
-                        {/* <li>Engine/Transmission/Exhaust</li> */}
+
+                    <h4>Mod List</h4>
+                    <div className='buildformbox'>
+
+                        <div className='imageDivTop'>
+                            <button onClick={addModFields} className="addBtn">Click to add more Mods
+                                <img src={plus} alt="plus-sign" />
+                            </button>
+                        </div>
+
                         {modsFields.map((inputMod, index) => {
                             return (
-                                <li key={index}>
-                                    <button onClick={addModFields} className="addButton"><img src={plus} alt="plus-sign" /></button>
+                                <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                                     <input
                                         placeholder="Enter mod here..."
                                         name="modtitle"
                                         type="text"
                                         value={inputMod.modtitle}
                                         onChange={event => handleChangeMods(index, event)} />
-                                    <button onClick={event => removeModFields(index, event)} className="removeButton"><img src={trash} alt="trashcan" /></button>
-                                </li>)
+                                    <button onClick={event => removeModFields(index, event)} className="removeBtn buildFrmBtn"><img src={trash} alt="trashcan" /></button>
+                                </motion.div>)
                         })}
-                        {/* <li>Interior/Exterior</li> */}
-
-                        {/* <li>Engine/Transmission/Exhaust</li>
-                        <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
-                            name="modtitle"
-                            type="text"
-                            id="modtitle1"
-                            value={formState.modtitle}
-                            onChange={handleChangeMods} /></li>
-                        <li>Wheels/Tires</li>
-                        <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
-                            name="modtitle"
-                            type="text"
-                            id="modtitle2"
-                            value={formState.modtitle}
-                            onChange={handleChangeMods} /></li>
-                        <li>Interior/Exterior</li>
-                        <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
-                            name="modtitle"
-                            type="text"
-                            id="modtitle3"
-                            value={formState.modtitle}
-                            onChange={handleChangeMods} /></li> */}
-                    </ul>
-                    <button type="submit">
-                        Submit
-                    </button>
+                    </div>
+                    <div className='submitFormBox'>
+                        <button className="submitFormBtn" type="submit">
+                            Submit
+                        </button>
+                    </div>
                 </form>
-
             </Modal>
         </>
     );

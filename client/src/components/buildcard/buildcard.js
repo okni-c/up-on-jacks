@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import close from '../../assets/webp/closebutton.webp';
 
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
@@ -19,6 +19,14 @@ import Modal from 'react-modal';
 function BuildCard({ builds }) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalData, setModalData] = useState(' ');
+
+    useEffect(() => {
+        if (modalIsOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+      }, [modalIsOpen])
 
     return (
         <>{builds && builds.map(build => (

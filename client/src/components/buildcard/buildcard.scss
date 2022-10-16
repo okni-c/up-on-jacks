@@ -76,12 +76,21 @@
     left: 40px;
     right: 40px;
     bottom: 40px;
-    background-color: #3E3E3E;
+    background-color: #2E2E2E;
     max-width: 800px;
     margin: 0 auto;
     padding: 42px 50px;
     overflow: auto;
     border-radius: 15px;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .closebuttoncontainer {
+        display: flex;
+        justify-content: flex-end;
+    }
 
     ul {
         background-color: #CD2E35;
@@ -188,4 +197,3 @@
 .ReactModal__Overlay--before-close {
     opacity: 0;
 }
-
