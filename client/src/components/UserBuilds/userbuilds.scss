@@ -77,7 +77,6 @@
             border: none;
 
             &::placeholder {
-
                 color: #CD2E35;
             }
         }
@@ -97,8 +96,9 @@
             margin: 10px;
             border-radius: 5px;
             background-color: #F7F7F7;
-            color: #F7F7F7;
+            color: #CD2E35;
             border: none;
+            font-size: 16px;
 
             &::placeholder {
                 color: #CD2E35;

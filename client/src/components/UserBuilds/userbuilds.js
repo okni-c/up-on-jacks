@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 import close from '../../assets/webp/closebutton.webp';
 import addimage from '../../assets/webp/add-image.webp';
-import plus from '../../assets/webp/add.webp';
+//import plus from '../../assets/webp/add.webp';
 
 import { useState } from 'react';
 
@@ -18,6 +18,9 @@ import { ADD_BUILD } from '../../utils/mutations';
 
 function UserBuilds() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modsFields, setModsFields] = useState([{modtitle: ''}])
+    const [imgsFields, setImgsFields] = useState([{image: ''}])
+
     const [addBuild] = useMutation(ADD_BUILD);
 
     const [formState, setFormState] = useState({
@@ -25,43 +28,59 @@ function UserBuilds() {
         year: '',
         manufacturer: '',
         model: '',
-        mods: [{
-            modtitle: ''
-        }],
-        buildimages: [{
-            image: ''
-        }]
+        mods: modsFields,
+        buildimages: imgsFields
     });
 
     // update state based on form input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
-
-
         setFormState({
             ...formState,
             [name]: value,
         });
     };
 
-    // update state of mods object
-    const handleChangeMods = (event) => {
-        const { name, value } = event.target;
+    const addModFields = (e) => {
+        e.preventDefault();
+        let newMod = { modtitle: '' };
+        setModsFields([...modsFields, newMod]);
+    }
 
-        setFormState ({
-            ...formState,
-            mods: {[name]: value}
-        });
+    const removeModFields = (index, event) => {
+        event.preventDefault();
+        let modsData = [...modsFields];
+        modsData.splice(index, 1)
+        setModsFields(modsData)
+    }
+
+    const addImgFields = (e) => {
+        e.preventDefault();
+        let newImage = { image: '' };
+        setImgsFields([...imgsFields, newImage]);
+    }
+
+    const removeImgFields = (index, event) => {
+        event.preventDefault();
+        let imgsData = [...imgsFields];
+        imgsData.splice(index, 1)
+        setImgsFields(imgsData)
+    }
+
+    // update state of mods array with object(s)
+    const handleChangeMods = (index, event) => {
+        let modsData = [...modsFields];
+        modsData[index][event.target.name] = event.target.value;
+        setModsFields(modsData);
+        setFormState({...formState, mods: modsData})
     };
 
-    // update state of buildimages object
-    const handleChangeImages = (event) => {
-        const { name, value } = event.target;
-
-        setFormState ({
-            ...formState,
-            buildimages: {[name]: value}
-        });
+    // update state of buildimages array with object(s)
+    const handleChangeImages = (index, event) => {
+        let imgsData = [...imgsFields];
+        imgsData[index][event.target.name] = event.target.value;
+        setImgsFields(imgsData);
+        setFormState({...formState, buildimages: imgsData})
     };
 
     // submit form
@@ -153,14 +172,21 @@ function UserBuilds() {
                         />
                     </div>
                     <img src={addimage} alt="add" />
-                    <input
-                        placeholder="buildImages url"
-                        name="image"
-                        type="text"
-                        id="image"
-                        value={formState.image}
-                        onChange={handleChangeImages}
-                    />
+                    <button onClick={addImgFields}>Add img</button>
+                    <ul>
+                    {imgsFields.map((inputImg, index) => {
+                            return (
+                                <li key={index}>
+                                    <input
+                                        placeholder="Enter image url..."
+                                        name="image"
+                                        type="text"
+                                        value={inputImg.image}
+                                        onChange={event => handleChangeImages(index, event)} />
+                                        <button onClick={event => removeImgFields(index, event)}>Remove</button>
+                                </li>)
+                        })}
+                    </ul>
                     <h4>Description</h4>
                     <textarea
                         placeholder="Enter Description Here..."
@@ -172,28 +198,42 @@ function UserBuilds() {
                         onChange={handleChange}
                     />
                     <h4>Mods</h4>
+                    <button onClick={addModFields}>Add mod</button>
                     <ul>
-                        <li>Engine/Transmission/Exhaust</li>
+                        {modsFields.map((inputMod, index) => {
+                            return (
+                                <li key={index}>
+                                    <input
+                                        placeholder="Enter mod here..."
+                                        name="modtitle"
+                                        type="text"
+                                        value={inputMod.modtitle}
+                                        onChange={event => handleChangeMods(index, event)} />
+                                        <button onClick={event => removeModFields(index, event)}>Remove</button>
+                                </li>)
+                        })}
+
+                        {/* <li>Engine/Transmission/Exhaust</li>
                         <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
                             name="modtitle"
                             type="text"
-                            id="model"
+                            id="modtitle1"
                             value={formState.modtitle}
                             onChange={handleChangeMods} /></li>
                         <li>Wheels/Tires</li>
                         <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
                             name="modtitle"
                             type="text"
-                            id="model"
+                            id="modtitle2"
                             value={formState.modtitle}
                             onChange={handleChangeMods} /></li>
                         <li>Interior/Exterior</li>
                         <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
                             name="modtitle"
                             type="text"
-                            id="model"
+                            id="modtitle3"
                             value={formState.modtitle}
-                            onChange={handleChangeMods} /></li>
+                            onChange={handleChangeMods} /></li> */}
                     </ul>
                     <button type="submit">
                         Submit
