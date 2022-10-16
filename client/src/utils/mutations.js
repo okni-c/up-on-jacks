@@ -39,8 +39,22 @@ export const ADD_FOLLOWER = gql`
 `;
 
 export const ADD_BUILD = gql`
-  mutation addBuild($buildDescription: String!, $manufacturer: String!, $model: String!, $year: String!) {
-    addBuild(buildDescription: $buildDescription, manufacturer: $manufacturer, model: $model, year: $year) {
+  mutation addBuild(
+    $buildDescription: String!,
+    $manufacturer: String!,
+    $model: String!,
+    $year: String!,
+    $mods: [ModInput],
+    $buildimages: [ImageInput]
+    ) {
+    addBuild(
+      buildDescription: $buildDescription,
+      manufacturer: $manufacturer,
+      model: $model,
+      year: $year,
+      mods: $mods,
+      buildimages: $buildimages
+      ) {
       _id
       buildDescription
       username
@@ -55,11 +69,9 @@ export const ADD_BUILD = gql`
         createdAt
       }
       buildimages {
-        _id
         image
       }
       mods {
-        _id
         modtitle
       }
     }

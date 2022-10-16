@@ -22,16 +22,43 @@ function UserBuilds() {
         buildDescription: '',
         year: '',
         manufacturer: '',
-        model: ''
+        model: '',
+        mods: [{
+            modtitle: ''
+        }],
+        buildimages: [{
+            image: ''
+        }]
     });
 
     // update state based on form input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
 
+
         setFormState({
             ...formState,
             [name]: value,
+        });
+    };
+
+    // update state of mods object
+    const handleChangeMods = (event) => {
+        const { name, value } = event.target;
+
+        setFormState ({
+            ...formState,
+            mods: {[name]: value}
+        });
+    };
+
+    // update state of buildimages object
+    const handleChangeImages = (event) => {
+        const { name, value } = event.target;
+
+        setFormState ({
+            ...formState,
+            buildimages: {[name]: value}
         });
     };
 
@@ -129,6 +156,54 @@ function UserBuilds() {
                         id="model"
                         value={formState.model}
                         onChange={handleChange}
+                    />
+                    <input
+                        placeholder="mod"
+                        name="modtitle"
+                        type="text"
+                        id="modtitle"
+                        value={formState.modtitle}
+                        onChange={handleChangeMods}
+                    />
+                    <input
+                        placeholder="mod"
+                        name="modtitle"
+                        type="text"
+                        id="modtitle"
+                        value={formState.modtitle}
+                        onChange={handleChangeMods}
+                    />
+                    <input
+                        placeholder="mod"
+                        name="modtitle"
+                        type="text"
+                        id="modtitle"
+                        value={formState.modtitle}
+                        onChange={handleChangeMods}
+                    />
+                    <input
+                        placeholder="buildImages url"
+                        name="image"
+                        type="text"
+                        id="image"
+                        value={formState.image}
+                        onChange={handleChangeImages}
+                    />
+                    <input
+                        placeholder="buildImages url"
+                        name="image"
+                        type="text"
+                        id="image"
+                        value={formState.image}
+                        onChange={handleChangeImages}
+                    />
+                    <input
+                        placeholder="buildImages url"
+                        name="image"
+                        type="text"
+                        id="image"
+                        value={formState.image}
+                        onChange={handleChangeImages}
                     />
                     <button type="submit">
                         Submit

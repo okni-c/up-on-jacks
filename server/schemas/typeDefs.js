@@ -43,8 +43,16 @@ type Mod {
   modtitle: String
 }
 
+input ModInput {
+  modtitle: String
+}
+
 type Image {
   _id: ID
+  image: String
+}
+
+input ImageInput {
   image: String
 }
 
@@ -77,7 +85,7 @@ type Mutation {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addBuild(buildDescription: String!, manufacturer: String!, model: String!, year: String!): Build
+    addBuild(buildDescription: String!, manufacturer: String!, model: String!, year: String!, mods: [ModInput], buildimages: [ImageInput]): Build
     addComment(buildId: ID!, commentBody: String!): Build
     addFollower(followerId: ID!): User
   }
