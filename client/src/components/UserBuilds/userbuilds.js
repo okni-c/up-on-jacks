@@ -6,6 +6,8 @@ import BuildCard from "../buildcard/buildcard";
 import { motion } from 'framer-motion';
 
 import close from '../../assets/webp/closebutton.webp';
+import addimage from '../../assets/webp/add-image.webp';
+import plus from '../../assets/webp/add.webp';
 
 import { useState } from 'react';
 
@@ -96,9 +98,37 @@ function UserBuilds() {
             >
                 <button onClick={() => setModalIsOpen(false)}><img src={close} alt="Close Button" /></button>
                 <h3>Build Form</h3>
-                <form onSubmit={handleFormSubmit}>
+                <form onSubmit={handleFormSubmit} className="buildForm">
+                    <div className="userInputs">
+                        <input
+                            placeholder="Year"
+                            name="year"
+                            type="text"
+                            id="year"
+                            value={formState.year}
+                            onChange={handleChange}
+                        />
+                        <input
+                            placeholder="Manufacturer"
+                            name="manufacturer"
+                            type="text"
+                            id="manufacturer"
+                            value={formState.manufacturer}
+                            onChange={handleChange}
+                        />
+                        <input
+                            placeholder="Model"
+                            name="model"
+                            type="text"
+                            id="model"
+                            value={formState.model}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <img src={addimage} alt="add" />
+                    <h4>Description</h4>
                     <textarea
-                        placeholder="buildDescription"
+                        placeholder="Enter Description Here..."
                         name="buildDescription"
                         type="text"
                         id="buildDescription"
@@ -106,30 +136,30 @@ function UserBuilds() {
                         value={formState.buildDescription}
                         onChange={handleChange}
                     />
-                    <input
-                        placeholder="year"
-                        name="year"
-                        type="text"
-                        id="year"
-                        value={formState.year}
-                        onChange={handleChange}
-                    />
-                    <input
-                        placeholder="manufacturer"
-                        name="manufacturer"
-                        type="text"
-                        id="manufacturer"
-                        value={formState.manufacturer}
-                        onChange={handleChange}
-                    />
-                    <input
-                        placeholder="model"
-                        name="model"
-                        type="text"
-                        id="model"
-                        value={formState.model}
-                        onChange={handleChange}
-                    />
+                    <h4>Mods</h4>
+                    <ul>
+                        <li>Engine/Transmission/Exhaust</li>
+                        <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
+                            name="model"
+                            type="text"
+                            id="model"
+                            value={formState.model}
+                            onChange={handleChange} /></li>
+                        <li>Wheels/Tires</li>
+                        <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
+                            name="model"
+                            type="text"
+                            id="model"
+                            value={formState.model}
+                            onChange={handleChange} /></li>
+                        <li>Interior/Exterior</li>
+                        <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
+                            name="model"
+                            type="text"
+                            id="model"
+                            value={formState.model}
+                            onChange={handleChange} /></li>
+                    </ul>
                     <button type="submit">
                         Submit
                     </button>
