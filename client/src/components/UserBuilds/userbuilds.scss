@@ -24,6 +24,20 @@
                 cursor: pointer;
             }
         }
+
+        button {
+            margin: 10px;
+            border-radius: 5px;
+            color: #CD2E35;
+            border: none;
+
+            &:hover {
+                text-decoration: underline;
+                color: #F7F7F7;
+                cursor: pointer;
+                background-color: #CD2E35;
+            }
+        }
     }
 }
 
@@ -39,6 +53,7 @@
         background-color: #CD2E35;
         color: #F7F7F7;
         border: none;
+        font-size: 18px;
 
         &::placeholder {
             color: #F7F7F7;
@@ -46,28 +61,30 @@
         }
     }
 
-    h4{
+    h4 {
         color: #F7F7F7;
         margin: 2px 0;
     }
 
     button {
-        font-size: 20px;
+        font-size: 15px;
         max-width: 150px;
-        width: 100%;
         margin: 0 auto;
+        padding: 0 10px;
+        cursor: pointer;
     }
 
     img {
         margin: 0 auto;
         max-width: 373px;
         width: 100%;
-        padding: 20px;
+        padding: 30px;
     }
 
     li {
+
         img {
-            max-width: 15px;
+            max-width: 16px;
             width: 100%;
             padding: 0;
             margin: 0 auto;
@@ -75,6 +92,8 @@
 
         input {
             border: none;
+            background-color: #F7F7F7;
+            width: max-content;
 
             &::placeholder {
                 color: #CD2E35;
@@ -86,8 +105,7 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        background-color: #CD2E35;
-        max-width: 550px;
+        max-width: 650px;
         width: 100%;
         margin: 0 auto;
         border-radius: 5px;
@@ -95,20 +113,60 @@
         input {
             margin: 10px;
             border-radius: 5px;
-            background-color: #F7F7F7;
-            color: #CD2E35;
+            background-color: #CD2E35;
+            color: #F7F7F7;
             border: none;
             font-size: 16px;
 
             &::placeholder {
-                color: #CD2E35;
+                color: #F7F7F7;
             }
         }
 
         @media (max-width: 992px) {
             flex-direction: column;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        p {
+            margin: 0 auto;
         }
 
     }
 
+}
+
+.removeButton {
+    background-color: transparent !important;
+    float: right;
+}
+
+.addButton {
+    background-color: transparent !important;
+    float: left;
+}
+
+.addImagesButton {
+    background-color: transparent !important;
+    float: right;
+}
+
+.formHeader {
+    text-align: center;
+    font-size: 30px;
+}
+
+.clickAdd {
+    text-align: center;
+    background-color: #2E2E2E !important;
+    color: #F7F7F7 !important;
+}
+
+.headerCar {
+    max-width: 70px;
+    width: 100%;
+    margin-left: 5px;
+    -webkit-filter: invert(1);
+    filter: invert(1);
 }

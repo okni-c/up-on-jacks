@@ -7,7 +7,9 @@ import { motion } from 'framer-motion';
 
 import close from '../../assets/webp/closebutton.webp';
 import addimage from '../../assets/webp/add-image.webp';
-//import plus from '../../assets/webp/add.webp';
+import plus from '../../assets/webp/add.webp';
+import trash from '../../assets/webp/trash.webp';
+import sedan from '../../assets/webp/sedan.webp'
 
 import { useState } from 'react';
 
@@ -17,9 +19,9 @@ import './userbuilds.scss';
 import { ADD_BUILD } from '../../utils/mutations';
 
 function UserBuilds() {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modsFields, setModsFields] = useState([{modtitle: ''}])
-    const [imgsFields, setImgsFields] = useState([{image: ''}])
+    const [modalIsOpen, setModalIsOpen] = useState(true);
+    const [modsFields, setModsFields] = useState([{ modtitle: '' }])
+    const [imgsFields, setImgsFields] = useState([{ image: '' }])
 
     const [addBuild] = useMutation(ADD_BUILD);
 
@@ -72,7 +74,7 @@ function UserBuilds() {
         let modsData = [...modsFields];
         modsData[index][event.target.name] = event.target.value;
         setModsFields(modsData);
-        setFormState({...formState, mods: modsData})
+        setFormState({ ...formState, mods: modsData })
     };
 
     // update state of buildimages array with object(s)
@@ -80,7 +82,7 @@ function UserBuilds() {
         let imgsData = [...imgsFields];
         imgsData[index][event.target.name] = event.target.value;
         setImgsFields(imgsData);
-        setFormState({...formState, buildimages: imgsData})
+        setFormState({ ...formState, buildimages: imgsData })
     };
 
     // submit form
@@ -143,7 +145,7 @@ function UserBuilds() {
                 ariaHideApp={false}
             >
                 <button onClick={() => setModalIsOpen(false)}><img src={close} alt="Close Button" /></button>
-                <h3>Build Form</h3>
+                <h3 className="formHeader">Create a New Build<img src={sedan} alt="sedan" className="headerCar"/></h3>
                 <form onSubmit={handleFormSubmit} className="buildForm">
                     <div className="userInputs">
                         <input
@@ -171,19 +173,19 @@ function UserBuilds() {
                             onChange={handleChange}
                         />
                     </div>
-                    <img src={addimage} alt="add" />
-                    <button onClick={addImgFields}>Add img</button>
                     <ul>
-                    {imgsFields.map((inputImg, index) => {
+                        <li className="clickAdd">Click to add Images<button onClick={addImgFields} className="addImagesButton"><img src={plus} alt="plus-sign" /></button></li>
+                        {imgsFields.map((inputImg, index) => {
                             return (
                                 <li key={index}>
+                                    <button onClick={addImgFields}>Choose File</button>
                                     <input
-                                        placeholder="Enter image url..."
+                                        placeholder=""
                                         name="image"
                                         type="text"
                                         value={inputImg.image}
                                         onChange={event => handleChangeImages(index, event)} />
-                                        <button onClick={event => removeImgFields(index, event)}>Remove</button>
+                                    <button onClick={event => removeImgFields(index, event)} className="removeButton"><img src={trash} alt="trashcan" /></button>
                                 </li>)
                         })}
                     </ul>
@@ -198,20 +200,22 @@ function UserBuilds() {
                         onChange={handleChange}
                     />
                     <h4>Mods</h4>
-                    <button onClick={addModFields}>Add mod</button>
                     <ul>
+                        {/* <li>Engine/Transmission/Exhaust</li> */}
                         {modsFields.map((inputMod, index) => {
                             return (
                                 <li key={index}>
+                                    <button onClick={addModFields} className="addButton"><img src={plus} alt="plus-sign" /></button>
                                     <input
                                         placeholder="Enter mod here..."
                                         name="modtitle"
                                         type="text"
                                         value={inputMod.modtitle}
                                         onChange={event => handleChangeMods(index, event)} />
-                                        <button onClick={event => removeModFields(index, event)}>Remove</button>
+                                    <button onClick={event => removeModFields(index, event)} className="removeButton"><img src={trash} alt="trashcan" /></button>
                                 </li>)
                         })}
+                        {/* <li>Interior/Exterior</li> */}
 
                         {/* <li>Engine/Transmission/Exhaust</li>
                         <li><img src={plus} alt="plus-sign" /><input placeholder="Enter mod here..."
