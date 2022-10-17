@@ -18,7 +18,7 @@ const resolvers = {
         },
         builds: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Build.find(params).sort({ createdAt: -1 }).limit(15);
+            return Build.find(params).sort({ createdAt: -1 }).limit(14);
         },
         // search for builds by keyword (searchbar)
         searchBuilds: async (parent, { search }) => {
@@ -98,12 +98,14 @@ const resolvers = {
         },
         addComment: async (parent, { buildId, commentBody }, context) => {
             if (context.user) {
+
+                const profileimg = await User.findOne({ username: context.user.username }).select('-__v -password -followers -builds -email -username -_id');
+
                 const updatedBuild = await Build.findOneAndUpdate(
                     { _id: buildId },
-                    { $push: { builds: { commentBody, username: context.user.username } } },
+                    { $push: { comments: { commentBody, username: context.user.username, profileimg: profileimg.profileimg } } },
                     { new: true, runValidators: true }
                 );
-
                 return updatedBuild;
             }
 

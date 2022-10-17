@@ -12,11 +12,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
-
 // Modal.setAppElement('#modal');
 
-
-function BuildCard({ builds }) {
+function BuildCard({ builds, user }) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalData, setModalData] = useState(' ');
 
@@ -72,7 +70,7 @@ function BuildCard({ builds }) {
                         <li key={mods._id}>{mods.modtitle}</li>)}
                 </ul>
                 <h3>Comments: {modalData.commentCount}</h3>
-                <CommentList comments={modalData.comments} />
+                <CommentList comments={modalData.comments} buildId={modalData._id} user={user} />
             </Modal>
         </>
     );

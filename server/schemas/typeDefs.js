@@ -1,7 +1,5 @@
-// import the gql tagged template function
 const { gql } = require('apollo-server-express');
 
-// create our typeDefs
 const typeDefs = gql`
 type Build {
     _id: ID
@@ -36,6 +34,7 @@ type Comment {
     commentBody: String
     createdAt: String
     username: String
+    profileimg: String
   }
 
 type Mod {
@@ -91,5 +90,4 @@ type Mutation {
   }
 `;
 
-// export the typeDefs
 module.exports = typeDefs;

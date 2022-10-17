@@ -41,8 +41,8 @@ const FollowerList = ({ followerCount, username, followers, profileimg }) => {
         <button onClick={() => setModalIsOpen(false)}><img src={close} alt="Close Button" /></button>
         <h3>{username}'s followers</h3>
         <ul className='modalDesc'>
-          {followers.map(follower => (
-            <li>
+          {followers.map((follower, index) => (
+            <li key={index}>
               <img src={profileimg} className="followerProfileImg" alt="test"/>
               <Link to={`/profile/${follower.username}`}>{follower.username}</Link>
             </li>

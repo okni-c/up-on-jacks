@@ -72,9 +72,11 @@ db.once('open', async () => {
     const randomBuildIndex = Math.floor(Math.random() * createdBuilds.length);
     const { _id: buildId } = createdBuilds[randomBuildIndex];
 
+    const profileimg = 'https://loremflickr.com/960/540/avatar';
+
     await Build.updateOne(
       { _id: buildId },
-      { $push: { comments: { commentBody, username } } },
+      { $push: { comments: { commentBody, username, profileimg } } },
       { runValidators: true }
     );
   }

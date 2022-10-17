@@ -27,6 +27,8 @@ function UserBody() {
 
     const user = data?.me || data?.user || {};
 
+    const me = {username: Auth.getProfile().data.username};
+
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
         return <Navigate to="/profile" />;
@@ -83,7 +85,9 @@ function UserBody() {
                 <section className="userbodybackground">
                     <div className="container">
                         <div className="sectionbox userbodybackground">
-                            <BuildCard builds={user.builds} />
+                            <div className='buildCardsBox'>
+                                <BuildCard builds={user.builds} user={me} />
+                            </div>
                         </div>
                     </div>
                 </section>

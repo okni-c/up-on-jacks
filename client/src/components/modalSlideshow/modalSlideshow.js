@@ -26,8 +26,8 @@ function ModalSlideshow({ slideImages }) {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper2"
             >
-                {slideImages && slideImages.map( slideImages =>
-                <SwiperSlide><img src={slideImages.image} alt=""/></SwiperSlide>)}
+                {slideImages && slideImages.map( (slideImages, index) =>
+                <SwiperSlide key={index}><img src={slideImages.image} alt=""/></SwiperSlide>)}
             </Swiper>
             <Swiper
                 onSwiper={setThumbsSwiper}
@@ -39,8 +39,8 @@ function ModalSlideshow({ slideImages }) {
                 className="mySwiper"
                 
             >
-                {slideImages && slideImages.map( slideImages =>
-                <SwiperSlide><img src={slideImages.image} alt="" className="submodal"/></SwiperSlide>)}
+                {slideImages && slideImages.map( (slideImages, index) =>
+                <SwiperSlide key={index}><img src={slideImages.image} alt="" className="submodal"/></SwiperSlide>)}
             </Swiper>
         </>
 

@@ -24,6 +24,7 @@ query searchBuilds($search: String) {
       createdAt
       username
       commentBody
+      profileimg
     }
   }
 }
@@ -53,6 +54,7 @@ export const QUERY_BUILDS = gql`
         createdAt
         username
         commentBody
+        profileimg
       }
     }
   }
@@ -95,6 +97,7 @@ export const QUERY_USER = gql`
           createdAt
           username
           commentBody
+          profileimg
         }
       }
     }
@@ -132,6 +135,7 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
+      profileimg
       followerCount
       followers {
         _id
@@ -178,6 +182,7 @@ export const QUERY_ME = gql`
           createdAt
           username
           commentBody
+          profileimg
         }
       }
     }

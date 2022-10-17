@@ -12,6 +12,10 @@ const commentSchema = new Schema(
       type: String,
       required: true
     },
+    profileimg: {
+      type: String,
+      required: false
+    },
     createdAt: {
       type: Date,
       default: Date.now,

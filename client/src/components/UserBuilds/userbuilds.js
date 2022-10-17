@@ -1,6 +1,7 @@
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
+import { ADD_BUILD } from '../../utils/mutations';
 
 import BuildCard from "../buildcard/buildcard";
 import { motion } from 'framer-motion';
@@ -14,12 +15,18 @@ import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
 import './userbuilds.scss';
-import { ADD_BUILD } from '../../utils/mutations';
 
 function UserBuilds() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modsFields, setModsFields] = useState([{ modtitle: '' }, { modtitle: '' }, { modtitle: '' }])
-    const [imgsFields, setImgsFields] = useState([{ image: '' },{ image: '' },{ image: '' }])
+    const [modsFields, setModsFields] = useState([{ modtitle: '' }, { modtitle: '' }, { modtitle: '' }]);
+    const [imgsFields, setImgsFields] = useState([{ image: '' }, { image: '' }, { image: '' }]);
+
+    const { username: userParam } = useParams();
+    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+        variables: { username: userParam }
+    });
+
+    const user = data?.me || data?.user || {};
 
     useEffect(() => {
         if (modalIsOpen) {
@@ -27,7 +34,7 @@ function UserBuilds() {
         } else {
             document.body.style.overflow = 'unset'
         }
-    }, [modalIsOpen])
+    }, [modalIsOpen]);
 
     const [addBuild] = useMutation(ADD_BUILD);
 
@@ -102,13 +109,6 @@ function UserBuilds() {
         }
     };
 
-    const { username: userParam } = useParams();
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-        variables: { username: userParam }
-    });
-
-    const user = data?.me || data?.user || {};
-
     if (!user?.username) {
         return (
             <h4>
@@ -136,7 +136,9 @@ function UserBuilds() {
                         <button onClick={handleClick}>+Add New Build</button>
 
                         <div className="sectionbox userbodybackground">
-                            <BuildCard builds={user.builds} />
+                            <div className='buildCardsBox'>
+                                <BuildCard builds={user.builds} user={user}/>
+                            </div>
                         </div>
 
                     </div>
@@ -165,7 +167,7 @@ function UserBuilds() {
 
                     <div className="topInputs">
                         <div>
-                            <label for="year">Year</label>
+                            <label htmlfor="year">Year</label>
                             <input
                                 placeholder="1997"
                                 name="year"
@@ -176,7 +178,7 @@ function UserBuilds() {
                             />
                         </div>
                         <div>
-                            <label for="manufacturer">Make</label>
+                            <label htmlfor="manufacturer">Make</label>
                             <input
                                 placeholder="Mazda"
                                 name="manufacturer"
@@ -187,7 +189,7 @@ function UserBuilds() {
                             />
                         </div>
                         <div>
-                            <label for="model">Model</label>
+                            <label htmlfor="model">Model</label>
                             <input
                                 placeholder="MX-5"
                                 name="model"

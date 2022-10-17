@@ -17,7 +17,7 @@ function SearchBar() {
         })
     };
 
-    const builds = data || {searchBuilds: {}};
+    const builds = data || { searchBuilds: {} };
     const results = builds.searchBuilds.length;
 
     return (
@@ -33,21 +33,23 @@ function SearchBar() {
             ) : (
                 <></>
             )}
-            {results > 0 &&
-                <BuildCard builds={builds.searchBuilds} />
-            }
+            <div className='buildCardsBox'>
+                {results > 0 &&
+                    <BuildCard builds={builds.searchBuilds} />
+                }
+            </div>
             {results === 0 &&
                 <motion.p initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                    default: {
-                        duration: 0.1,
-                        ease: "linear"
-                    },
-                    scale: {
-                        type: "spring"
-                    }
-                }} style={{color: "white", fontSize: "30px"}}>No results</motion.p>}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                        default: {
+                            duration: 0.1,
+                            ease: "linear"
+                        },
+                        scale: {
+                            type: "spring"
+                        }
+                    }} style={{ color: "white", fontSize: "30px" }}>No results</motion.p>}
         </div>
     );
 }

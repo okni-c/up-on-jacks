@@ -77,3 +77,18 @@ export const ADD_BUILD = gql`
     }
   }
 `;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($buildId: ID!, $commentBody: String!) {
+    addComment(buildId: $buildId, commentBody: $commentBody) {
+      _id
+      commentCount
+      comments {
+        _id
+        commentBody
+        createdAt
+        username
+      }
+    }
+  }
+`;

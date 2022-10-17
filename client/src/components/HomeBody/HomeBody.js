@@ -2,13 +2,17 @@ import './HomeBody.scss';
 import BuildCard from '../buildcard/buildcard';
 import SearchBar from '../searchBar/searchBar';
 import { useQuery } from '@apollo/client';
-import { QUERY_BUILDS } from '../../utils/queries';
+import { QUERY_BUILDS, QUERY_ME_BASIC } from '../../utils/queries';
 import { AnimatePresence } from 'framer-motion';
 
 
 function HomeBody() {
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_BUILDS);
+  const { data:me } = useQuery(QUERY_ME_BASIC);
+
+  const user = me?.me || {};
+
   const builds = data?.builds || [];
 
   return (
@@ -26,7 +30,7 @@ function HomeBody() {
                 <h3>Loading...</h3>
               ) : (
                 <AnimatePresence>
-                  <BuildCard builds={builds} />
+                  <BuildCard builds={builds} user={user} />
                 </AnimatePresence>
               )}
             </div>
