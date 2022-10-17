@@ -20,8 +20,8 @@ function HomeBody() {
         <div className="container">
           <SearchBar />
           <div className="sectionbox">
-            <h2 className="bodyheader alignleft">Featured Builds</h2>
-            <div>
+            <h2 className="bodyheader alignleft">Newest Builds</h2>
+            <div className='buildCardsBox'>
               {loading ? (
                 <h3>Loading...</h3>
               ) : (

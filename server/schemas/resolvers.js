@@ -18,7 +18,7 @@ const resolvers = {
         },
         builds: async (parent, { username }) => {
             const params = username ? { username } : {};
-            return Build.find(params).sort({ createdAt: -1 });
+            return Build.find(params).sort({ createdAt: -1 }).limit(15);
         },
         // search for builds by keyword (searchbar)
         searchBuilds: async (parent, { search }) => {

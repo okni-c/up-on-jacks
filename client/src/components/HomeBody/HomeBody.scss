@@ -4,7 +4,7 @@
 }
 
 .backgroundcolor {
-  background-color:#3E3E3E;
+  background-color: #3E3E3E;
 }
 
 .bodyheader {
@@ -31,4 +31,12 @@
     font-size: 40px;
     font-weight: bold;
   }
+}
+
+.buildCardsBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
 }

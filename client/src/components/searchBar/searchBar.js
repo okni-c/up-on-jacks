@@ -34,9 +34,8 @@ function SearchBar() {
                 <></>
             )}
             {results > 0 &&
-                <motion.div>
-                    <BuildCard builds={builds.searchBuilds} />
-                </motion.div>}
+                <BuildCard builds={builds.searchBuilds} />
+            }
             {results === 0 &&
                 <motion.p initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}

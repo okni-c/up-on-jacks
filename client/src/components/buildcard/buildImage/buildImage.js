@@ -4,7 +4,7 @@ const BuildImage = ({ buildimages }) => {
     return (
         <>
             {buildimages && buildimages[0] && (
-                <img src={buildimages[0].image} alt="Build Car" className="buildcardimage" />
+                <img src={buildimages[0].image} alt="Build Car" className="buildcardimage"/>
             )}
         </>
     );

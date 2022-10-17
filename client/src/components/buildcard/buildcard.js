@@ -44,21 +44,10 @@ function BuildCard({ builds }) {
                         type: "spring"
                     }
                 }}>
-                <BuildImage buildimages={build.buildimages} />
                 <div className="buildcardinfo">
-                    <h3 className="buildcardheader">{build.username}'s {build.year} {build.manufacturer} {build.model}</h3>
-                    <div className="buildcardbody">
-                        {/* <div className="buildcardlist">
-                                <ul>
-                                    <li>Engine: </li>
-                                    <li>HP: </li>
-                                    <li>Torque: </li>
-                                </ul>
-                            </div> */}
-                        <div className="buildcarddesc">
-                            <p>{build.buildDescription}</p>
-                        </div>
-                    </div>
+                    <h3 className="buildcardheader">{build.username}'s</h3>
+                    <BuildImage buildimages={build.buildimages} />
+                    <h3 className="buildcardheader">{build.year} {build.manufacturer} {build.model}</h3>
                 </div>
             </motion.div>))}
             <Modal
