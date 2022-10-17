@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@apollo/client';
-import { useParams } from 'react-router-dom';
-import { QUERY_USER, QUERY_ME } from '../../utils/queries';
+// import { useParams } from 'react-router-dom';
+import { QUERY_ME } from '../../utils/queries';
 import { ADD_BUILD } from '../../utils/mutations';
 
 import BuildCard from "../buildcard/buildcard";
@@ -21,12 +21,9 @@ function UserBuilds() {
     const [modsFields, setModsFields] = useState([{ modtitle: '' }, { modtitle: '' }, { modtitle: '' }]);
     const [imgsFields, setImgsFields] = useState([{ image: '' }, { image: '' }, { image: '' }]);
 
-    const { username: userParam } = useParams();
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-        variables: { username: userParam }
-    });
+    const { loading, data } = useQuery(QUERY_ME);
 
-    const user = data?.me || data?.user || {};
+    const user = data?.me || {};
 
     useEffect(() => {
         if (modalIsOpen) {
@@ -137,7 +134,7 @@ function UserBuilds() {
 
                         <div className="sectionbox userbodybackground">
                             <div className='buildCardsBox'>
-                                <BuildCard builds={user.builds} user={user}/>
+                                <BuildCard builds={user.builds} />
                             </div>
                         </div>
 
@@ -167,7 +164,7 @@ function UserBuilds() {
 
                     <div className="topInputs">
                         <div>
-                            <label htmlfor="year">Year</label>
+                            <label htmlFor="year">Year</label>
                             <input
                                 placeholder="1997"
                                 name="year"
@@ -178,7 +175,7 @@ function UserBuilds() {
                             />
                         </div>
                         <div>
-                            <label htmlfor="manufacturer">Make</label>
+                            <label htmlFor="manufacturer">Make</label>
                             <input
                                 placeholder="Mazda"
                                 name="manufacturer"
@@ -189,7 +186,7 @@ function UserBuilds() {
                             />
                         </div>
                         <div>
-                            <label htmlfor="model">Model</label>
+                            <label htmlFor="model">Model</label>
                             <input
                                 placeholder="MX-5"
                                 name="model"

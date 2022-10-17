@@ -25,7 +25,7 @@ function UserBody() {
         variables: { username: userParam }
     });
 
-    //fix this tomorrow, only a problem with state
+    //fix this tomorrow, only a problem with state on commentList
 
     const user = data?.me || data?.user || {};
 
@@ -86,7 +86,7 @@ function UserBody() {
                     <div className="container">
                         <div className="sectionbox userbodybackground">
                             <div className='buildCardsBox'>
-                                <BuildCard builds={user.builds} user={user} />
+                                <BuildCard builds={user.builds} />
                             </div>
                         </div>
                     </div>

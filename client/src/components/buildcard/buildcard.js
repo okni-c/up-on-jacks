@@ -4,6 +4,7 @@ import ModalSlideshow from '../modalSlideshow/modalSlideshow';
 import CommentList from '../commentList/commentList';
 import BuildImage from './buildImage/buildImage';
 import { motion } from 'framer-motion';
+import { useLazyQuery } from '@apollo/client';
 
 import close from '../../assets/webp/closebutton.webp';
 
@@ -11,20 +12,28 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import { QUERY_USER_PIC } from '../../utils/queries';
 
 // Modal.setAppElement('#modal');
 
-function BuildCard({ builds, user }) {
+function BuildCard({ builds }) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalData, setModalData] = useState(' ');
 
+    const [searchProfImg, { data }] = useLazyQuery(QUERY_USER_PIC, {
+        variables: {username: modalData.username}
+    });
+
+    const user = data?.user || {};
+
     useEffect(() => {
         if (modalIsOpen) {
+            searchProfImg();
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset'
         }
-      }, [modalIsOpen])
+    }, [modalIsOpen, searchProfImg])
 
     return (
         <>{builds && builds.map(build => (
@@ -57,20 +66,29 @@ function BuildCard({ builds, user }) {
                 overlayClassName="Overlay"
                 ariaHideApp={false}
             >
-                <button onClick={() => setModalIsOpen(false)}><img src={close} alt="Close Button" /></button>
-                <h3><Link to={`/profile/${modalData.username}`} onClick={() => {
-                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                }}>{modalData.username}'s {modalData.year} {modalData.manufacturer} {modalData.model}</Link></h3>
+                <button onClick={() => setModalIsOpen(false)}>
+                    <img src={close} alt="Close Button" />
+                </button>
+                <img src={user.profileimg} alt="user profile" style={{width: "150px"}}/>
+                <h3>
+                    <Link to={`/profile/${modalData.username}`} onClick={() => {
+                        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                    }}>
+                        {modalData.username}'s <br /> {modalData.year} {modalData.manufacturer} {modalData.model}
+                    </Link>
+                </h3>
                 <ModalSlideshow slideImages={modalData.buildimages} />
+
                 <h3>Biography</h3>
                 <p className='modalDesc' id='bio'>{modalData.buildDescription}</p>
+
                 <h3>Mod List</h3>
                 <ul className='modalDesc'>
                     {modalData.mods && modalData.mods.map(mods =>
                         <li key={mods._id}>{mods.modtitle}</li>)}
                 </ul>
-                <h3>Comments: {modalData.commentCount}</h3>
-                <CommentList comments={modalData.comments} buildId={modalData._id} user={user} />
+
+                <CommentList comments={modalData.comments} buildId={modalData._id} commentCount={modalData.commentCount} />
             </Modal>
         </>
     );

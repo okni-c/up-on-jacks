@@ -60,6 +60,15 @@ export const QUERY_BUILDS = gql`
   }
 `;
 
+export const QUERY_USER_PIC = gql`
+query user($username: String!) {
+  user(username: $username) {
+    _id
+    profileimg
+  }
+}
+`;
+
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
@@ -102,7 +111,6 @@ export const QUERY_USER = gql`
       }
     }
   }
-
 `;
 
 export const LOGIN_USER = gql`

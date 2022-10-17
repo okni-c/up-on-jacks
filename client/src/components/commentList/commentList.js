@@ -1,21 +1,37 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { motion } from 'framer-motion';
+
+import { useLazyQuery } from '@apollo/client';
 
 import Auth from '../../utils/auth';
 
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../../utils/mutations';
 
-const CommentList = ({ comments, buildId, user }) => {
+import { QUERY_ME_BASIC } from '../../utils/queries';
+
+const CommentList = ({ comments, commentCount, buildId }) => {
     const [commentBody, setBody] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
     const [commentList, setCommentList] = useState([]);
+    const [commentCounter, setCommentCounter] = useState(commentCount);
+
     const [addComment, { error }] = useMutation(ADD_COMMENT);
 
+    const [getMe, { data }] = useLazyQuery(QUERY_ME_BASIC);
+
     const loggedIn = Auth.loggedIn();
+
+    useEffect(() => {
+        if (loggedIn) {
+            getMe();
+        }
+    }, [loggedIn, getMe]);
+
+    const user = data?.me || {};
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -36,6 +52,7 @@ const CommentList = ({ comments, buildId, user }) => {
             // clear form value
             setBody('');
             setCharacterCount(0);
+            setCommentCounter(commentCount + commentList.length + 1);
             let comment = { commentBody: commentBody };
             setCommentList([...commentList, comment])
         } catch (e) {
@@ -44,6 +61,7 @@ const CommentList = ({ comments, buildId, user }) => {
     };
     return (
         <>
+        <h3>{commentCounter} Comments</h3>
             {loggedIn && (
                 <div>
                     <p
@@ -75,7 +93,7 @@ const CommentList = ({ comments, buildId, user }) => {
                 <div key={index} className='modalDesc'>
                     <p>{comment.commentBody}</p>
                     <div>
-                        <p>Made by: <Link to={`/profile/${comment.username}`}>
+                        <p><Link to={`/profile/${comment.username}`}>
                             <img src={comment.profileimg} className="followerProfileImg" alt="test" />
                             {comment.username}</Link></p>
                         <p>Comment Date: {comment.createdAt}</p>
@@ -86,7 +104,7 @@ const CommentList = ({ comments, buildId, user }) => {
                 <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='modalDesc'>
                     <p>{comment.commentBody}</p>
                     <div>
-                        <p>Made by: <Link to={`/profile/${user.username}`}>
+                        <p><Link to={`/profile/${user.username}`}>
                             <img src={user.profileimg} className="followerProfileImg" alt="test" />
                             {user.username}</Link></p>
                         <p>Comment Date: Just Now</p>
