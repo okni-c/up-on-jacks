@@ -25,9 +25,9 @@ function UserBody() {
         variables: { username: userParam }
     });
 
-    const user = data?.me || data?.user || {};
+    //fix this tomorrow, only a problem with state
 
-    const me = {username: Auth.getProfile().data.username};
+    const user = data?.me || data?.user || {};
 
     // redirect to personal profile page if username is the logged-in user's
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -86,7 +86,7 @@ function UserBody() {
                     <div className="container">
                         <div className="sectionbox userbodybackground">
                             <div className='buildCardsBox'>
-                                <BuildCard builds={user.builds} user={me} />
+                                <BuildCard builds={user.builds} user={user} />
                             </div>
                         </div>
                     </div>

@@ -71,8 +71,8 @@ const CommentList = ({ comments, buildId, user }) => {
                 </div>
             )}
 
-            {comments.map(comment => (
-                <div key={comment._id} className='modalDesc'>
+            {comments.map((comment, index) => (
+                <div key={index} className='modalDesc'>
                     <p>{comment.commentBody}</p>
                     <div>
                         <p>Made by: <Link to={`/profile/${comment.username}`}>
@@ -82,8 +82,8 @@ const CommentList = ({ comments, buildId, user }) => {
                     </div>
                 </div>
             ))}
-            {commentList.map(comment => (
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='modalDesc'>
+            {commentList.map((comment, index) => (
+                <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='modalDesc'>
                     <p>{comment.commentBody}</p>
                     <div>
                         <p>Made by: <Link to={`/profile/${user.username}`}>
