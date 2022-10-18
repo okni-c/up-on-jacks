@@ -13,6 +13,8 @@ import { ADD_COMMENT } from '../../utils/mutations';
 
 import { QUERY_ME_BASIC } from '../../utils/queries';
 
+import './commentList.scss';
+
 const CommentList = ({ comments, commentCount, buildId }) => {
     const [commentBody, setBody] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
@@ -61,14 +63,9 @@ const CommentList = ({ comments, commentCount, buildId }) => {
     };
     return (
         <>
-        <h3>{commentCounter} Comments</h3>
+            <h3>{commentCounter} Comments</h3>
             {loggedIn && (
-                <div>
-                    <p
-                        className={`${characterCount === 280 || error ? 'error' : ''}`}
-                    >
-                        Character Count: {characterCount}/280
-                    </p>
+                <div className="commentBox">
                     <form
                         className=""
                         onSubmit={handleFormSubmit}
@@ -85,18 +82,26 @@ const CommentList = ({ comments, commentCount, buildId }) => {
                         </button>
                     </form>
 
+                    <p
+                        className={`${characterCount === 280 || error ? 'error' : ''}`}
+                    >
+                        Character Count: {characterCount}/280
+                    </p>
+
                     {error && <div>Something broke...</div>}
                 </div>
             )}
-
             {comments.map((comment, index) => (
                 <div key={index} className='modalDesc'>
                     <p>{comment.commentBody}</p>
                     <div>
-                        <p><Link to={`/profile/${comment.username}`}>
+                        <div className="commentIcon">
                             <img src={comment.profileimg} className="followerProfileImg" alt="test" />
-                            {comment.username}</Link></p>
+                            <Link to={`/profile/${comment.username}`}>
+                                {comment.username}</Link>
+                        </div>
                         <p>Comment Date: {comment.createdAt}</p>
+
                     </div>
                 </div>
             ))}
@@ -104,9 +109,12 @@ const CommentList = ({ comments, commentCount, buildId }) => {
                 <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className='modalDesc'>
                     <p>{comment.commentBody}</p>
                     <div>
-                        <p><Link to={`/profile/${user.username}`}>
+                        <div className="commentIcon">
                             <img src={user.profileimg} className="followerProfileImg" alt="test" />
-                            {user.username}</Link></p>
+                            <Link to={`/profile/${user.username}`}>
+
+                                {user.username}</Link>
+                        </div>
                         <p>Comment Date: Just Now</p>
                     </div>
                 </motion.div>
