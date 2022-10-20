@@ -14,7 +14,7 @@ function HomeBody() {
   return (
     <div>
       <div className='userHeroBackground'>
-        <div className="hero container"><h1>The Real Car Social Media Site</h1></div>
+        {/* <div className="hero container"><h1>The Real Car Social Media Site</h1></div> */}
       </div>
       <section className="backgroundcolor">
         <div className="container">

@@ -21,7 +21,7 @@ function BuildCard({ builds }) {
     const [modalData, setModalData] = useState(' ');
 
     const [searchProfImg, { data }] = useLazyQuery(QUERY_USER_PIC, {
-        variables: {username: modalData.username}
+        variables: { username: modalData.username }
     });
 
     const user = data?.user || {};
@@ -69,13 +69,15 @@ function BuildCard({ builds }) {
                 <button onClick={() => setModalIsOpen(false)}>
                     <img src={close} alt="Close Button" />
                 </button>
-                <img src={user.profileimg} alt="user profile" style={{width: "150px"}}/>
                 <h3>
-                    <Link to={`/profile/${modalData.username}`} onClick={() => {
-                        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-                    }}>
-                        {modalData.username}'s <br /> {modalData.year} {modalData.manufacturer} {modalData.model}
-                    </Link>
+                    <div className="buildcardHeader">
+
+                        <Link to={`/profile/${modalData.username}`} onClick={() => {
+                            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                        }}><img src={user.profileimg} alt="user profile" />
+                            {modalData.username}'s <br /> {modalData.year} {modalData.manufacturer} {modalData.model}
+                        </Link>
+                    </div>
                 </h3>
                 <ModalSlideshow slideImages={modalData.buildimages} />
 
