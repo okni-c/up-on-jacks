@@ -1,41 +1,33 @@
-import { useQuery, useMutation } from '@apollo/client';
-// import { useParams } from 'react-router-dom';
-import { QUERY_ME } from '../../utils/queries';
-import { ADD_BUILD } from '../../utils/mutations';
-
-import BuildCard from "../buildcard/buildcard";
+import '../buildcard.scss';
+import BuildImage from '../buildImage/buildImage';
 import { motion } from 'framer-motion';
+import { useMutation } from '@apollo/client';
 
-import close from '../../assets/webp/closebutton.webp';
-import plus from '../../assets/webp/add.webp';
-import trash from '../../assets/webp/trash.webp';
+import { MOD_BUILD, DELETE_BUILD } from '../../../utils/mutations';
 
+import close from '../../../assets/webp/closebutton.webp';
+import plus from '../../../assets/webp/add.webp';
+import trash from '../../../assets/webp/trash.webp';
+
+import React from 'react';
 import { useState, useEffect } from 'react';
-
 import Modal from 'react-modal';
 
-import './userbuilds.scss';
+import './buildCardModify.scss';
 
-function UserBuilds() {
+// Modal.setAppElement('#modal');
+
+function BuildCardModify({ builds }) {
+
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modsFields, setModsFields] = useState([{ modtitle: '' }, { modtitle: '' }, { modtitle: '' }]);
-    const [imgsFields, setImgsFields] = useState([{ image: '' }, { image: '' }, { image: '' }]);
 
-    const { loading, data } = useQuery(QUERY_ME);
+    const [buildUID, setBuildUID] = useState('');
 
-    const user = data?.me || {};
-
-    useEffect(() => {
-        if (modalIsOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset'
-        }
-    }, [modalIsOpen]);
-
-    const [addBuild] = useMutation(ADD_BUILD);
+    const [modsFields, setModsFields] = useState([]);
+    const [imgsFields, setImgsFields] = useState([]);
 
     const [formState, setFormState] = useState({
+        buildId: buildUID,
         buildDescription: '',
         year: '',
         manufacturer: '',
@@ -43,6 +35,17 @@ function UserBuilds() {
         mods: modsFields,
         buildimages: imgsFields
     });
+
+    const [modifyBuild] = useMutation(MOD_BUILD);
+    const [deleteBuild] = useMutation(DELETE_BUILD);
+
+    useEffect(() => {
+        if (modalIsOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+    }, [modalIsOpen])
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -62,8 +65,10 @@ function UserBuilds() {
     const removeModFields = (index, event) => {
         event.preventDefault();
         let modsData = [...modsFields];
-        modsData.splice(index, 1)
-        setModsFields(modsData)
+        if (modsData.length > 1) {
+            modsData.splice(index, 1);
+            setModsFields(modsData);
+        }
     }
 
     const addImgFields = (e) => {
@@ -75,8 +80,10 @@ function UserBuilds() {
     const removeImgFields = (index, event) => {
         event.preventDefault();
         let imgsData = [...imgsFields];
-        imgsData.splice(index, 1)
-        setImgsFields(imgsData)
+        if (imgsData.length > 1) {
+            imgsData.splice(index, 1);
+            setImgsFields(imgsData);
+        }
     }
 
     // update state of mods array with object(s)
@@ -84,7 +91,7 @@ function UserBuilds() {
         let modsData = [...modsFields];
         modsData[index][event.target.name] = event.target.value;
         setModsFields(modsData);
-        setFormState({ ...formState, mods: modsData })
+        setFormState({ ...formState, mods: modsData });
     };
 
     // update state of buildimages array with object(s)
@@ -92,56 +99,125 @@ function UserBuilds() {
         let imgsData = [...imgsFields];
         imgsData[index][event.target.name] = event.target.value;
         setImgsFields(imgsData);
-        setFormState({ ...formState, buildimages: imgsData })
+        setFormState({ ...formState, buildimages: imgsData });
     };
 
     // submit form
     const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        //if you dont change it, it wont send it
+        if (formState.mods.length === 0) {
+            delete formState.mods;
+        }
+
+        if (formState.buildimages.length === 0) {
+            delete formState.buildimages;
+        }
+
         try {
-            await addBuild({
+            await modifyBuild({
                 variables: { ...formState },
             });
         } catch (e) {
             console.error(e);
         }
+        alert("modified!");
     };
 
-    if (!user?.username) {
-        return (
-            <h4>
-                You need to be logged in to see this. Use the navigation links above to
-                sign up or log in!
-            </h4>
-        );
+    //delete build
+    const handleDeleteBuild = async (event) => {
+        event.preventDefault();
+
+        const buildId = buildUID;
+
+        // eslint-disable-next-line no-restricted-globals
+        if (confirm("Are you sure you want to delete this build?\n" + formState.year + ' ' + formState.manufacturer + ' ' + formState.model)) {
+            try {
+                await deleteBuild({ variables: { buildId } });
+            } catch (e) {
+                console.error(e);
+            }
+            window.location.reload(false);
+        }
     }
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+    const handleClick = async (index) => {
+        const reduxImages = [...builds[index].buildimages];
+        const reduxMods = [...builds[index].mods];
+        const currentBuildUID = builds[index]._id;
 
-    const handleClick = async () => {
+        const imgKey = ['image'];
+        const modKey = ['modtitle'];
+
+        const reduxImg = array => array.map(o => imgKey.reduce((acc, curr) => {
+            acc[curr] = o[curr];
+            return acc;
+        }, {}));
+
+        const reduxMod = array => array.map(o => modKey.reduce((acc, curr) => {
+            acc[curr] = o[curr];
+            return acc;
+        }, {}));
+
+        const returnImgArray = reduxImg(reduxImages);
+
+        const returnModArray = reduxMod(reduxMods);
+
+        setBuildUID(currentBuildUID);
+
+        setImgsFields([...imgsFields, ...returnImgArray]);
+        setModsFields([...modsFields, ...returnModArray]);
+
+        setFormState({
+            buildId: currentBuildUID,
+            buildDescription: builds[index].buildDescription,
+            year: builds[index].year,
+            manufacturer: builds[index].manufacturer,
+            model: builds[index].model,
+            mods: modsFields,
+            buildimages: imgsFields
+        });
+
         setModalIsOpen(true);
     }
 
+    const handleClose = () => {
+        setModalIsOpen(false);
+        setImgsFields([]);
+        setModsFields([]);
+        setFormState({
+            buildId: '',
+            buildDescription: '',
+            year: '',
+            manufacturer: '',
+            model: '',
+            mods: modsFields,
+            buildimages: imgsFields
+        })
+    }
+
     return (
-        <>
-            <motion.div initial={{ width: 0 }} animate={{ width: "100%" }} exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}>
-                <div className='userHeroBackground'></div>
-                <section className="userbodybackground">
-                    <div className="container">
-
-                        <button onClick={handleClick}>+Add New Build</button>
-
-                        <div className="sectionbox userbodybackground">
-                            <div className='buildCardsBox'>
-                                <BuildCard builds={user.builds} />
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-            </motion.div>
-
+        <>{builds && builds.map((build, index) => (
+            <motion.div key={index} className="buildcardcontainer" onClick={() => {
+                handleClick(index);
+            }} initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                    default: {
+                        duration: 0.1,
+                        ease: "linear"
+                    },
+                    scale: {
+                        type: "spring"
+                    }
+                }}>
+                <div className="buildcardinfo">
+                    <h3 className="buildcardheader">{build.username}'s</h3>
+                    <BuildImage buildimages={build.buildimages} />
+                    <h3 className="buildcardheader">{build.year} {build.manufacturer} {build.model}</h3>
+                </div>
+            </motion.div>))}
             <Modal
                 isOpen={modalIsOpen}
                 closeTimeoutMS={200}
@@ -152,19 +228,19 @@ function UserBuilds() {
                 ariaHideApp={false}
             >
                 <div className='closebuttoncontainer'>
-                    <button onClick={() => setModalIsOpen(false)}>
+                    <button onClick={handleClose}>
                         <img src={close} alt="Close Button" />
                     </button>
                 </div>
 
 
-                <h3 className="formHeader">Create a new build</h3>
+                <h3 className="formHeader">Modify This Build</h3>
 
                 <form onSubmit={handleFormSubmit} className="buildForm">
 
                     <div className="topInputs">
                         <div>
-                            <label htmlFor="year">Year</label>
+                            <label htmlFor="year">Year*</label>
                             <input
                                 placeholder="1997"
                                 name="year"
@@ -172,10 +248,11 @@ function UserBuilds() {
                                 id="year"
                                 value={formState.year}
                                 onChange={handleChange}
+                                required
                             />
                         </div>
                         <div>
-                            <label htmlFor="manufacturer">Make</label>
+                            <label htmlFor="manufacturer">Make*</label>
                             <input
                                 placeholder="Mazda"
                                 name="manufacturer"
@@ -183,10 +260,11 @@ function UserBuilds() {
                                 id="manufacturer"
                                 value={formState.manufacturer}
                                 onChange={handleChange}
+                                required
                             />
                         </div>
                         <div>
-                            <label htmlFor="model">Model</label>
+                            <label htmlFor="model">Model*</label>
                             <input
                                 placeholder="MX-5"
                                 name="model"
@@ -194,11 +272,12 @@ function UserBuilds() {
                                 id="model"
                                 value={formState.model}
                                 onChange={handleChange}
+                                required
                             />
                         </div>
                     </div>
 
-                    <h4>Add your images</h4>
+                    <h4>Add your images*</h4>
                     <div className='buildformbox'>
 
                         <div className='imageDivTop'>
@@ -215,7 +294,8 @@ function UserBuilds() {
                                         name="image"
                                         type="text"
                                         value={inputImg.image}
-                                        onChange={event => handleChangeImages(index, event)} />
+                                        onChange={event => handleChangeImages(index, event)}
+                                        required />
                                     <button onClick={event => removeImgFields(index, event)} className="removeBtn buildFrmBtn"><img src={trash} alt="trashcan" /></button>
                                 </motion.div>
                             )
@@ -223,7 +303,7 @@ function UserBuilds() {
 
                     </div>
 
-                    <h4>Biography</h4>
+                    <h4>Biography*</h4>
                     <textarea
                         placeholder="I’ve had this car since......"
                         name="buildDescription"
@@ -231,9 +311,10 @@ function UserBuilds() {
                         id="buildDescription"
                         value={formState.buildDescription}
                         onChange={handleChange}
+                        required
                     />
 
-                    <h4>Mod List</h4>
+                    <h4>Mod List*</h4>
                     <div className='buildformbox'>
 
                         <div className='imageDivTop'>
@@ -261,9 +342,12 @@ function UserBuilds() {
                         </button>
                     </div>
                 </form>
+                <button onClick={handleDeleteBuild}>
+                    <img src={trash} alt="Delete Button" id='deleteBuild'/>
+                </button>
             </Modal>
         </>
     );
 }
 
-export default UserBuilds;
+export default BuildCardModify;

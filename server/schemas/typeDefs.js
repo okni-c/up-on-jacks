@@ -83,9 +83,17 @@ type Mutation {
 
 type Mutation {
     login(email: String!, password: String!): Auth
+
     addUser(username: String!, email: String!, password: String!): Auth
+
+    modifyBuild(buildId: ID!, buildDescription: String, manufacturer: String, model: String, year: String, mods: [ModInput], buildimages: [ImageInput]): Build
+
     addBuild(buildDescription: String!, manufacturer: String!, model: String!, year: String!, mods: [ModInput], buildimages: [ImageInput]): Build
+
+    deleteBuild(buildId: ID!): Build
+
     addComment(buildId: ID!, commentBody: String!): Build
+
     addFollower(followerId: ID!): User
   }
 `;

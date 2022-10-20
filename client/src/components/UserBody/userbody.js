@@ -25,8 +25,6 @@ function UserBody() {
         variables: { username: userParam }
     });
 
-    //fix this tomorrow, only a problem with state on commentList
-
     const user = data?.me || data?.user || {};
 
     // redirect to personal profile page if username is the logged-in user's

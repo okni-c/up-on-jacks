@@ -68,6 +68,19 @@ const resolvers = {
 
             return { token, user };
         },
+        modifyBuild: async (parent, args, context) => {
+            if (context.user) {
+                const updatedBuild = await Build.findByIdAndUpdate(
+                    { _id: args.buildId },
+                    { ...args },
+                    { new: true, runValidators: true }
+                );
+
+                return updatedBuild;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
         addBuild: async (parent, args, context) => {
             if (context.user) {
                 const build = await Build.create({ ...args, username: context.user.username });
@@ -79,6 +92,14 @@ const resolvers = {
                 );
 
                 return build;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        deleteBuild: async (parent, { buildId }, context) => {
+            if (context.user) {
+                const deletedbuild = await Build.findByIdAndDelete({ _id: buildId });
+                return deletedbuild;
             }
 
             throw new AuthenticationError('You need to be logged in!');

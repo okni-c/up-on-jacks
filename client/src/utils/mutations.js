@@ -38,6 +38,40 @@ export const ADD_FOLLOWER = gql`
   }
 `;
 
+export const MOD_BUILD = gql`
+  mutation modifyBuild(
+    $buildId: ID!,
+    $buildDescription: String,
+    $manufacturer: String,
+    $model: String,
+    $year: String,
+    $mods: [ModInput],
+    $buildimages: [ImageInput]
+    ) {
+    modifyBuild(
+      buildId: $buildId,
+      buildDescription: $buildDescription,
+      manufacturer: $manufacturer,
+      model: $model,
+      year: $year,
+      mods: $mods,
+      buildimages: $buildimages
+      ) {
+      _id
+      buildDescription
+      manufacturer
+      model
+      year
+      buildimages {
+        image
+      }
+      mods {
+        modtitle
+      }
+    }
+  }
+`;
+
 export const ADD_BUILD = gql`
   mutation addBuild(
     $buildDescription: String!,
@@ -91,4 +125,12 @@ export const ADD_COMMENT = gql`
       }
     }
   }
+`;
+
+export const DELETE_BUILD = gql`
+mutation deleteBuild($buildId: ID!) {
+  deleteBuild(buildId: $buildId) {
+    _id
+  }
+}
 `;

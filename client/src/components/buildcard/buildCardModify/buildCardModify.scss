@@ -1,0 +1,10 @@
+#deleteBuild {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    max-width: 40px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        scale: 1.2;
+    }
+}
