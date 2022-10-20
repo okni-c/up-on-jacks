@@ -101,15 +101,13 @@ function BuildsBody() {
     };
 
     // submit form
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
+    const handleFormSubmit = async () => {
         try {
             await addBuild({
                 variables: { ...formState },
             });
         } catch (e) {
             console.error(e);
-            console.log(formState);
         }
     };
 
