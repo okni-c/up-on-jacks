@@ -25,6 +25,7 @@ type User {
     city: String
     state: String
     profileimg: String
+    bio: String
     builds: [Build]
     followers: [User]
   }
@@ -61,30 +62,20 @@ type Auth {
   }
 
 type Query {
-    builds(username: String): [Build]
-  }
-
-type Query {
-    searchBuilds(search: String): [Build]
-}
-
-type Query {
     me: User
     users: [User]
     user(username: String!): User
     builds(username: String): [Build]
     build(_id: ID!): Build
-  }
-
-type Mutation {
-    login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    searchBuilds(search: String): [Build]
   }
 
 type Mutation {
     login(email: String!, password: String!): Auth
 
     addUser(username: String!, email: String!, password: String!): Auth
+
+    modifyUser(userId: ID!, username: String!, profileimg: String, usertitle: String, city: String, state: String, bio: String): User
 
     modifyBuild(buildId: ID!, buildDescription: String, manufacturer: String, model: String, year: String, mods: [ModInput], buildimages: [ImageInput]): Build
 
@@ -92,7 +83,7 @@ type Mutation {
 
     deleteBuild(buildId: ID!): Build
 
-    addComment(buildId: ID!, commentBody: String!): Build
+    addComment(buildId: ID!, commentBody: String!, profileimg: String): Build
 
     addFollower(followerId: ID!): User
   }

@@ -36,6 +36,10 @@ const userSchema = new Schema(
       type: String,
       required: false
     },
+    bio: {
+      type: String,
+      required: false
+    },
     builds: [
       {
         type: Schema.Types.ObjectId,

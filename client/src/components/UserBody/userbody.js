@@ -68,6 +68,7 @@ function UserBody() {
                             <h2>{user.username}</h2>
                             <p>{user.usertitle}</p>
                             <p>{user.city}, {user.state}</p>
+                            <p>{user.bio}</p>
                             <FollowerList username={user.username}
                                 profileimg={user.profileimg}
                                 followerCount={user.followerCount}

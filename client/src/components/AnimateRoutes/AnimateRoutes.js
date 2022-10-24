@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import Home from '../../pages/Home/home';
 import UserProfile from '../../pages/UserProfile/userprofile';
+import Settings from '../../pages/Settings/settings'
 import Login from '../../pages/Login/login';
 import SignUp from '../../pages/Signup/signup';
 import ManageBuilds from '../../pages/Builds/managebuilds';
@@ -21,6 +22,7 @@ function AnimateRoutes() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/managebuilds' element={<ManageBuilds />} />
+        <Route path='/settings' element={<Settings />} />
         <Route path='*' element={<NoMatch />} />
       </Routes>
     </AnimatePresence>

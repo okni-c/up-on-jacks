@@ -24,6 +24,36 @@ export const ADD_USER = gql`
   }
 `;
 
+export const MOD_USER = gql`
+  mutation modifyUser(
+    $userId: ID!, 
+    $username: String!, 
+    $profileimg: String, 
+    $usertitle: String, 
+    $city: String, 
+    $state: String, 
+    $bio: String
+    ) {
+    modifyUser(
+      userId: $userId, 
+      username: $username, 
+      profileimg: $profileimg, 
+      usertitle: $usertitle, 
+      city: $city, 
+      state: $state, 
+      bio: $bio) {
+        _id
+        username
+        usertitle
+        city
+        state
+        profileimg
+        bio
+    }
+  }
+`;
+
+
 export const ADD_FOLLOWER = gql`
   mutation addFollower($id: ID!) {
     addFollower(followerId: $id) {
@@ -113,13 +143,14 @@ export const ADD_BUILD = gql`
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($buildId: ID!, $commentBody: String!) {
-    addComment(buildId: $buildId, commentBody: $commentBody) {
+  mutation addComment($buildId: ID!, $commentBody: String!, $profileimg: String) {
+    addComment(buildId: $buildId, commentBody: $commentBody, profileimg: $profileimg) {
       _id
       commentCount
       comments {
         _id
         commentBody
+        profileimg
         createdAt
         username
       }

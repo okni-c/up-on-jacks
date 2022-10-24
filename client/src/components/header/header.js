@@ -3,7 +3,6 @@ import logo from '../../assets/webp/modernlogo.webp';
 import profile from '../../assets/webp/user.webp'
 import sedan from '../../assets/webp/sedan.webp'
 import dwnArrow from '../../assets/webp/down-arrow.webp';
-import followers from '../../assets/webp/followers.webp'
 import settings from '../../assets/webp/settings.webp'
 import { Link } from 'react-router-dom';
 import './header.scss';
@@ -69,8 +68,7 @@ function Header() {
                 <ul>
                   <li><Link to='/profile'><img aria-hidden="true" src={profile} className="userP" alt="" />Profile</Link></li>
                   <li><Link to='/managebuilds'><img aria-hidden="true" src={sedan} className="userB" alt="" />Builds</Link></li>
-                  <li><Link to='/'><img aria-hidden="true" src={followers} className="userF" alt="" />Following</Link></li>
-                  <li><Link to='/'><img aria-hidden="true" src={settings} className="userS" alt="" />Settings</Link></li>
+                  <li><Link to='/settings'><img aria-hidden="true" src={settings} className="userS" alt="" />Settings</Link></li>
                   <li id='logout'><Link to='/' onClick={logout}>Logout</Link></li>
                 </ul>
               </motion.div>}

@@ -79,6 +79,7 @@ export const QUERY_USER = gql`
       city
       state
       profileimg
+      bio
       followerCount
       followers {
         _id
@@ -142,6 +143,10 @@ export const QUERY_ME_BASIC = gql`
     me {
       _id
       username
+      usertitle
+      city
+      state
+      bio
       email
       profileimg
       followerCount
@@ -162,6 +167,7 @@ export const QUERY_ME = gql`
       usertitle
       city
       state
+      bio
       profileimg
       followerCount
       followers {

@@ -51,6 +51,18 @@ const resolvers = {
 
             return { token, user };
         },
+        modifyUser: async (parent, args, context) => {
+            if (context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: args.userId },
+                    { ...args },
+                    { new: true, runValidators: true }
+                );
+
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
 
@@ -117,14 +129,11 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
-        addComment: async (parent, { buildId, commentBody }, context) => {
+        addComment: async (parent, { buildId, commentBody, profileimg }, context) => {
             if (context.user) {
-
-                const profileimg = await User.findOne({ username: context.user.username }).select('-__v -password -followers -builds -email -username -_id');
-
                 const updatedBuild = await Build.findOneAndUpdate(
                     { _id: buildId },
-                    { $push: { comments: { commentBody, username: context.user.username, profileimg: profileimg.profileimg } } },
+                    { $push: { comments: { commentBody, username: context.user.username, profileimg: profileimg } } },
                     { new: true, runValidators: true }
                 );
                 return updatedBuild;

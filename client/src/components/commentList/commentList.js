@@ -17,6 +17,7 @@ import './commentList.scss';
 
 const CommentList = ({ comments, commentCount, buildId }) => {
     const [commentBody, setBody] = useState('');
+    const [profileimg, setProfileimg] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
     const [commentList, setCommentList] = useState([]);
     const [commentCounter, setCommentCounter] = useState(commentCount);
@@ -33,7 +34,11 @@ const CommentList = ({ comments, commentCount, buildId }) => {
         }
     }, [loggedIn, getMe]);
 
-    const user = data?.me || {};
+    const me = data?.me || {};
+
+    useEffect(() => {
+        setProfileimg(me.profileimg)
+    }, [setProfileimg, me.profileimg])
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -48,7 +53,7 @@ const CommentList = ({ comments, commentCount, buildId }) => {
         event.preventDefault();
         try {
             await addComment({
-                variables: { commentBody, buildId },
+                variables: { commentBody, buildId, profileimg },
             });
 
             // clear form value
@@ -56,7 +61,7 @@ const CommentList = ({ comments, commentCount, buildId }) => {
             setCharacterCount(0);
             setCommentCounter(commentCount + commentList.length + 1);
             let comment = { commentBody: commentBody };
-            setCommentList([...commentList, comment])
+            setCommentList([...commentList, comment]);
         } catch (e) {
             console.error(e);
         }
@@ -110,10 +115,10 @@ const CommentList = ({ comments, commentCount, buildId }) => {
                     <p>{comment.commentBody}</p>
                     <div>
                         <div className="commentIcon">
-                            <img src={user.profileimg} className="followerProfileImg" alt="test" />
-                            <Link to={`/profile/${user.username}`}>
+                            <img src={me.profileimg} className="followerProfileImg" alt="test" />
+                            <Link to={`/profile/${me.username}`}>
 
-                                {user.username}</Link>
+                                {me.username}</Link>
                         </div>
                         <p>Comment Date: Just Now</p>
                     </div>
